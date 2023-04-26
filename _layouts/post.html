@@ -19,12 +19,6 @@ layout: default
         by {{ page.author }}
         {% endif %}
     </div>
-    {% if page.description != null %}
-    <noscript>
-        <div class="post-description">{{ page.description }}</div>
-    </noscript>
-    <div id="animated-post-description" class="post-description" style="display: none;"></div>
-    {% endif %}
     {{ content | toc_only }}
     {% if page.anchor %}
     {% include anchor_headings.html html=content anchorBody="#" beforeHeading=true %}
@@ -38,45 +32,3 @@ layout: default
     {% include disqus.html %}
 </div>
 {% endif %}
-
-{% assign animation_speed = site.dash.animation_speed | default: 50 %}
-<script>
-    let i = 0;
-    const text = '{{ page.description }}';
-    const speed = parseInt('{{ animation_speed }}');
-
-    function typeWriter() {
-        if (i < text.length) {
-            document.getElementById('animated-post-description').innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
-        }
-    }
-
-    document.getElementById('animated-post-description').style.display = 'initial';
-    typeWriter();
-
-    // Image modal
-    var $imgs = [];
-    $('img').each(function (idx) {
-        var obj = {
-            src: $(this).attr('src')
-        }
-        $imgs.push(obj);
-        var elem = $(this);
-        $(this).click(function () {
-            $('.modal').magnificPopup('open', idx);
-        });
-    });
-
-    $('.modal').magnificPopup({
-        items: $imgs,
-        type: 'image',
-        closeOnContentClick: true,
-        mainClass: 'mfp-img-mobile',
-        image: {
-            verticalFit: true
-        }
-
-    });
-</script>

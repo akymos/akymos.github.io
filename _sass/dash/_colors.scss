@@ -18,6 +18,7 @@ $color-cyan: #4FC1E4;
 $color-blue: #637AFE;
 $color-indigo: #6775C4;
 $color-purple: #8E59D7;
+$color-clean: #b8cbdc;
 
 .color-pink { color: $color-pink !important; }
 .color-red { color: $color-red !important; }
@@ -40,3 +41,6 @@ $color-purple: #8E59D7;
 .color-blue-hover:hover { color: $color-blue !important; }
 .color-indigo-hover:hover { color: $color-indigo !important; }
 .color-purple-hover:hover { color: $color-purple !important; }
+
+.try-hack-me-logo:hover { fill: $color-red !important; }
+.try-hack-me-logo { fill: $color-clean !important; }
