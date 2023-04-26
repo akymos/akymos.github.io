@@ -1,0 +1,28 @@
+<!-- pagination -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}index.html"><i
+            class="fas fa-chevron-left"></i></a>
+    {% else %}
+    <span><i class="fas fa-chevron-left"></i></span>
+    {% endif %}
+
+    {% if paginator.page_trail %}
+    {% for trail in paginator.page_trail %}
+    {% if page.url == trail.path %}
+    <span class="webjeda">{{ trail.num }}</span>
+    {% else %}
+    <a href="{{ trail.path | prepend: site.baseurl | replace: '//', '/' }}" title="{{trail.title}}">{{ trail.num }}</a>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if paginator.next_page %}
+    <a href=" {{ paginator.next_page_path | prepend: site.baseurl | replace: '//' , '/' }}index.html"><i
+            class="fas fa-chevron-right"></i></a>
+    {% else %}
+    <span><i class="fas fa-chevron-right"></i></span>
+    {% endif %}
+</div>
+{% endif %}

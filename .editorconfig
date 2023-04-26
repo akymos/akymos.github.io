@@ -1,0 +1,4 @@
+root = true
+
+[*.{html,md}]
+indent_size = 4
