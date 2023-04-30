@@ -93,14 +93,14 @@ Using default input encoding: UTF-8
 Loaded 1 password hash (Raw-MD5 [MD5 256/256 AVX2 8x3])
 Warning: no OpenMP support for this hash type, consider --fork=2
 Press 'q' or Ctrl-C to abort, almost any other key for status
-Password123      (?)     
+***********      (?)     
 1g 0:00:00:00 DONE (2023-04-24 21:59) 100.0g/s 3379Kp/s 3379Kc/s 3379KC/s coco21..redlips
 Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
 Session completed.
 ```
 So the admin account is:
 - Username: `manager`
-- Password: `Password123`
+- Password: `***********`
 ![LazyAdmin - Admin panel](/assets/images/ctf-lazyadmin/03.png){:class="post-image"}
 
 ## Exploit
