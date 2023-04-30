@@ -1,0 +1,103 @@
+---
+layout: post
+title: TryHackMe - OhSINT
+date: 2023-04-30 12:45
+category: ctf
+author: akymos
+tags: [ctf, TryHackMe]
+toc: true
+anchor: true
+published: true
+---
+
+# Room info
+- **Name**: OhSINT
+- **Link**: [https://tryhackme.com/room/ohsint](https://tryhackme.com/room/ohsint){:target="_blank"}
+- **Subscription**: Free
+- **Difficulty**: Easy
+- **Description**: Are you able to use open source intelligence to solve this challenge?
+
+## Questions
+1. What is this users avatar of?
+2. What city is this person in?
+3. Whats the SSID of the WAP he connected to?
+4. What is his personal email address?
+5. What site did you find his email address on?
+6. Where has he gone on holiday?
+7. What is this persons password?
+
+## Task file
+![OhSINT - Task file](/assets/images/ctf-ohsint/01.jpg){:class="post-image"}
+
+# Question 1 - What is this users avatar of?
+As a jpg file is provided, we can use `exiftool` to get the metadata of the image.
+
+``` bash
+$ exiftool 1.jpg
+ExifTool Version Number         : 12.57
+File Name                       : WindowsXP.jpg
+Directory                       : .
+File Size                       : 234 kB
+File Modification Date/Time     : 2023:04:30 12:49:04+02:00
+File Access Date/Time           : 2023:04:30 12:50:18+02:00
+File Inode Change Date/Time     : 2023:04:30 12:50:16+02:00
+File Permissions                : -rw-r--r--
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+XMP Toolkit                     : Image::ExifTool 11.27
+GPS Latitude                    : 54 deg 17' 41.27" N
+GPS Longitude                   : 2 deg 15' 1.33" W
+Copyright                       : OWoodflint
+Image Width                     : 1920
+Image Height                    : 1080
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
+Image Size                      : 1920x1080
+Megapixels                      : 2.1
+GPS Latitude Ref                : North
+GPS Longitude Ref               : West
+GPS Position                    : 54 deg 17' 41.27" N, 2 deg 15' 1.33" W
+```
+The copyright owner is: `OWoodflint` let's search some information about him.
+![OhSINT - Google search](/assets/images/ctf-ohsint/02.png){:class="post-image"}
+
+Based on the twitter account, we can see that the user avatar is a `cat`.
+
+# Question 2 - What city is this person in?
+![OhSINT - User Tweet](/assets/images/ctf-ohsint/03.png)
+Based on this tweet, we can see that the user Bssid is `B4:5D:50:AA:86:41` and using the website [wigle.net](https://wigle.net/){:target="_blank"} we can get the location of the user starting from the Bssid.
+![OhSINT - Wigle search](/assets/images/ctf-ohsint/04.png)
+
+So the answer is: `London`
+
+# Question 3 - Whats the SSID of the WAP he connected to?
+![OhSINT - Wigle search](/assets/images/ctf-ohsint/05.png)
+
+So the answer is: `UnileverWiFi`
+
+# Question 4 - What is his personal email address?
+In the previous google search, we can see that the user has a github account.
+The readme file of the repository contains the email address.
+![OhSINT - Github account](/assets/images/ctf-ohsint/06.png){:class="post-image"}
+
+So the answer is: `OWoodflint@gmail.com`
+
+# Question 5 - What site did you find his email address on?
+Easy, the answer is: `GitHub`
+
+# Question 6 - Where has he gone on holiday?
+Same google search, we can see that the user has a wordpress account.
+The blog post contains the answer.
+![OhSINT - Wordpress account](/assets/images/ctf-ohsint/07.png){:class="post-image"}
+
+So the answer is: `New York`
+
+# Question 7 - What is this persons password?
+This one is tricky. After spending some time searching for the password, I decided to check the rss feed of the blog, to check if there is some post that I missed.
+![OhSINT - Wordpress account](/assets/images/ctf-ohsint/08.png){:class="post-image"}
+And I found a part of text that I didn't see in the blog post.
+
+So the answer is: `pennYDr0pper.!`
