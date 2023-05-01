@@ -16,6 +16,8 @@ jobs:
           key: ${{ runner.os }}-gems-v2-${{ hashFiles('**/Gemfile') }}
           restore-keys: |
             ${{ runner.os }}-gems-v2
+      - name: Install Dependencies
+        run: npm install
       - uses: helaili/jekyll-action@2.5.0
         with:
           token: ${{ secrets.GH_PAGES_TOKEN }}
