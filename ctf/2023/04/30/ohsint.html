@@ -3,18 +3,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Akymos.io</title>
+<title>TryHackMe - OhSINT | Akymos.io</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="Akymos.io" />
+<meta property="og:title" content="TryHackMe - OhSINT" />
+<meta name="author" content="Akymos" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="https://akymos.io/404.html" />
-<meta property="og:url" content="https://akymos.io/404.html" />
+<meta name="description" content="Table of Contents" />
+<meta property="og:description" content="Table of Contents" />
+<link rel="canonical" href="https://akymos.io/ctf/2023/04/30/ohsint.html" />
+<meta property="og:url" content="https://akymos.io/ctf/2023/04/30/ohsint.html" />
 <meta property="og:site_name" content="Akymos.io" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-04-30T12:45:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Akymos.io" />
+<meta property="twitter:title" content="TryHackMe - OhSINT" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"Akymos.io","url":"https://akymos.io/404.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Akymos"},"dateModified":"2023-04-30T12:45:00+00:00","datePublished":"2023-04-30T12:45:00+00:00","description":"Table of Contents","headline":"TryHackMe - OhSINT","mainEntityOfPage":{"@type":"WebPage","@id":"https://akymos.io/ctf/2023/04/30/ohsint.html"},"url":"https://akymos.io/ctf/2023/04/30/ohsint.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/main.css"><link type="application/atom+xml" rel="alternate" href="https://akymos.io/feed.xml" title="Akymos.io" /><!-- Magnific Popup core CSS file -->
     <link rel="stylesheet" href="/assets/css/magnific-popup.css">
@@ -50,27 +54,214 @@
     </nav>
 </header><main class="pb-4">
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-            <style type="text/css" media="screen">
-    .container {
-        margin: 10px auto;
-        max-width: 600px;
-        text-align: center;
-    }
+            <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-invert prose prose-invert lg:prose-xl">
+    <header class="mb-4 lg:mb-6 not-format">
+        <address class="flex items-center mb-6 not-italic">
+            <div class="inline-flex items-center mr-3 text-sm text-white">
+                <img class="mr-4 w-16 h-16 rounded-full" src="https://github.com/akymos.png" alt="Akymos">
+                <div>
+                    <p class="text-base font-light text-gray-400">
+                        <time pubdate="2023-04-30 12:45:00 +0000" datetime="2023-04-30 12:45:00 +0000" title="30 Apr 2023">Published on 30 Apr 2023</time> by Akymos
+                    </p>
+                    <p class="text-base font-light text-gray-400">
+                        
+                        <a class="tag ctf" href="/tag/ctf/index.html">ctf</a>
+                        
+                        <a class="tag tryhackme" href="/tag/tryhackme/index.html">tryhackme</a>
+                        
+                    </p>
+                </div>
+            </div>
+        </address>
+        <h1>TryHackMe - OhSINT</h1>
+    </header>
+    
+    <hr />
+<h3>
+  
+  
+    Table of Contents
+  
+  
+</h3>
+    
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
+      <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+      <li><a href="#task-file" id="markdown-toc-task-file">Task file</a></li>
+    </ul>
+  </li>
+  <li><a href="#question-1---what-is-this-users-avatar-of" id="markdown-toc-question-1---what-is-this-users-avatar-of">Question 1 - What is this users avatar of?</a></li>
+  <li><a href="#question-2---what-city-is-this-person-in" id="markdown-toc-question-2---what-city-is-this-person-in">Question 2 - What city is this person in?</a></li>
+  <li><a href="#question-3---whats-the-ssid-of-the-wap-he-connected-to" id="markdown-toc-question-3---whats-the-ssid-of-the-wap-he-connected-to">Question 3 - Whats the SSID of the WAP he connected to?</a></li>
+  <li><a href="#question-4---what-is-his-personal-email-address" id="markdown-toc-question-4---what-is-his-personal-email-address">Question 4 - What is his personal email address?</a></li>
+  <li><a href="#question-5---what-site-did-you-find-his-email-address-on" id="markdown-toc-question-5---what-site-did-you-find-his-email-address-on">Question 5 - What site did you find his email address on?</a></li>
+  <li><a href="#question-6---where-has-he-gone-on-holiday" id="markdown-toc-question-6---where-has-he-gone-on-holiday">Question 6 - Where has he gone on holiday?</a></li>
+  <li><a href="#question-7---what-is-this-persons-password" id="markdown-toc-question-7---what-is-this-persons-password">Question 7 - What is this persons password?</a></li>
+</ul>
 
-    h1 {
-        margin: 30px 0;
-        font-size: 4em;
-        line-height: 1;
-        letter-spacing: -1px;
-    }
-</style>
+</nav><hr />
 
-<div class="container">
-    <h1>404</h1>
+<div class="pb-1"></div>
+<h2 id="room-info">
+  
+  
+    <a href="#room-info">#</a> Room info
+  
+  
+</h2>
+    
+<ul>
+  <li><strong>Name</strong>: OhSINT</li>
+  <li><strong>Link</strong>: <a href="https://tryhackme.com/room/ohsint" target="_blank">https://tryhackme.com/room/ohsint</a></li>
+  <li><strong>Subscription</strong>: Free</li>
+  <li><strong>Difficulty</strong>: Easy</li>
+  <li><strong>Description</strong>: Are you able to use open source intelligence to solve this challenge?</li>
+</ul>
+<h3 id="questions">
+  
+  
+    <a href="#questions">#</a> Questions
+  
+  
+</h3>
+    
+<ol>
+  <li>What is this users avatar of?</li>
+  <li>What city is this person in?</li>
+  <li>Whats the SSID of the WAP he connected to?</li>
+  <li>What is his personal email address?</li>
+  <li>What site did you find his email address on?</li>
+  <li>Where has he gone on holiday?</li>
+  <li>What is this persons password?</li>
+</ol>
+<h3 id="task-file">
+  
+  
+    <a href="#task-file">#</a> Task file
+  
+  
+</h3>
+    
+<p><img src="/assets/images/ctf-ohsint/01.jpg" alt="OhSINT - Task file" class="post-image" /></p>
+<h2 id="question-1---what-is-this-users-avatar-of">
+  
+  
+    <a href="#question-1---what-is-this-users-avatar-of">#</a> Question 1 - What is this users avatar of?
+  
+  
+</h2>
+    
+<p>As a jpg file is provided, we can use <code class="language-plaintext highlighter-rouge">exiftool</code> to get the metadata of the image.</p>
 
-    <p><strong>Page not found :(</strong></p>
-    <p>The requested page could not be found.</p>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>exiftool 1.jpg
+ExifTool Version Number         : 12.57
+File Name                       : WindowsXP.jpg
+Directory                       : <span class="nb">.</span>
+File Size                       : 234 kB
+File Modification Date/Time     : 2023:04:30 12:49:04+02:00
+File Access Date/Time           : 2023:04:30 12:50:18+02:00
+File Inode Change Date/Time     : 2023:04:30 12:50:16+02:00
+File Permissions                : <span class="nt">-rw-r--r--</span>
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+XMP Toolkit                     : Image::ExifTool 11.27
+GPS Latitude                    : 54 deg 17<span class="s1">' 41.27" N
+GPS Longitude                   : 2 deg 15'</span> 1.33<span class="s2">" W
+Copyright                       : OWoodflint
+Image Width                     : 1920
+Image Height                    : 1080
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
+Image Size                      : 1920x1080
+Megapixels                      : 2.1
+GPS Latitude Ref                : North
+GPS Longitude Ref               : West
+GPS Position                    : 54 deg 17' 41.27"</span> N, 2 deg 15<span class="s1">' 1.33" W
+</span></code></pre></div></div>
+<p>The copyright owner is: <code class="language-plaintext highlighter-rouge">OWoodflint</code> let’s search some information about him.
+<img src="/assets/images/ctf-ohsint/02.png" alt="OhSINT - Google search" class="post-image" /></p>
+
+<p>Based on the twitter account, we can see that the user avatar is a <code class="language-plaintext highlighter-rouge">cat</code>.</p>
+<h2 id="question-2---what-city-is-this-person-in">
+  
+  
+    <a href="#question-2---what-city-is-this-person-in">#</a> Question 2 - What city is this person in?
+  
+  
+</h2>
+    
+<p><img src="/assets/images/ctf-ohsint/03.png" alt="OhSINT - User Tweet" />
+Based on this tweet, we can see that the user Bssid is <code class="language-plaintext highlighter-rouge">B4:5D:50:AA:86:41</code> and using the website <a href="https://wigle.net/" target="_blank">wigle.net</a> we can get the location of the user starting from the Bssid.
+<img src="/assets/images/ctf-ohsint/04.png" alt="OhSINT - Wigle search" /></p>
+
+<p>So the answer is: <code class="language-plaintext highlighter-rouge">London</code></p>
+<h2 id="question-3---whats-the-ssid-of-the-wap-he-connected-to">
+  
+  
+    <a href="#question-3---whats-the-ssid-of-the-wap-he-connected-to">#</a> Question 3 - Whats the SSID of the WAP he connected to?
+  
+  
+</h2>
+    
+<p><img src="/assets/images/ctf-ohsint/05.png" alt="OhSINT - Wigle search" /></p>
+
+<p>So the answer is: <code class="language-plaintext highlighter-rouge">UnileverWiFi</code></p>
+<h2 id="question-4---what-is-his-personal-email-address">
+  
+  
+    <a href="#question-4---what-is-his-personal-email-address">#</a> Question 4 - What is his personal email address?
+  
+  
+</h2>
+    
+<p>In the previous google search, we can see that the user has a github account.
+The readme file of the repository contains the email address.
+<img src="/assets/images/ctf-ohsint/06.png" alt="OhSINT - Github account" class="post-image" /></p>
+
+<p>So the answer is: <code class="language-plaintext highlighter-rouge">OWoodflint@gmail.com</code></p>
+<h2 id="question-5---what-site-did-you-find-his-email-address-on">
+  
+  
+    <a href="#question-5---what-site-did-you-find-his-email-address-on">#</a> Question 5 - What site did you find his email address on?
+  
+  
+</h2>
+    
+<p>Easy, the answer is: <code class="language-plaintext highlighter-rouge">GitHub</code></p>
+<h2 id="question-6---where-has-he-gone-on-holiday">
+  
+  
+    <a href="#question-6---where-has-he-gone-on-holiday">#</a> Question 6 - Where has he gone on holiday?
+  
+  
+</h2>
+    
+<p>Same google search, we can see that the user has a wordpress account.
+The blog post contains the answer.
+<img src="/assets/images/ctf-ohsint/07.png" alt="OhSINT - Wordpress account" class="post-image" /></p>
+
+<p>So the answer is: <code class="language-plaintext highlighter-rouge">New York</code></p>
+<h2 id="question-7---what-is-this-persons-password">
+  
+  
+    <a href="#question-7---what-is-this-persons-password">#</a> Question 7 - What is this persons password?
+  
+  
+</h2>
+    
+<p>This one is tricky. After spending some time searching for the password, I decided to check the rss feed of the blog, to check if there is some post that I missed.
+<img src="/assets/images/ctf-ohsint/08.png" alt="OhSINT - Wordpress account" class="post-image" />
+And I found a part of text that I didn’t see in the blog post.</p>
+
+<p>So the answer is: <code class="language-plaintext highlighter-rouge">pennYDr0pper.!</code></p>
+
+    
+</article>
         </div>
     </main>
     
