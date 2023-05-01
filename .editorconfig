@@ -2,3 +2,6 @@ root = true
 
 [*.{html,md}]
 indent_size = 4
+
+[*.css]
+indent_size = 2

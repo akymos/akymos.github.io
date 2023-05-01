@@ -1,32 +1,21 @@
 title: Akymos.io
-baseurl: "" 
 url: "https://akymos.io"
-github_username: akymos
 
 future: true
-show_excerpts: false
-
-tag_permalink_style: pretty
-tag_page_layout: tag_page
-tag_page_dir: tag
 
 pagination:
   enabled: true
   per_page: 5
-  permalink: '/blog/page:num/'
+  permalink: '/page:num/'
   sort_reverse: true
   trail: 
     before: 2
     after: 2
 
-dash:
-  social_links:
-    - url: https://linkedin.com/in/matteocusinato
-      icon: linkedin
-      color: blue
-    - url: https://github.com/akymos
-      icon: github-square
-      color: purple
+markdown: kramdown
+
+kramdown:
+  parse_block_html: true
 
 autopages:
   enabled: true
@@ -45,13 +34,20 @@ autopages:
     enabled: false
 
 # Build settings
-theme: jekyll-dash
-comments: true
 plugins:
   - jekyll-feed
   - liquid-md5
-  - jekyll/tagging
-  - jekyll-toc
+  - jekyll-postcss
+  - jekyll-seo-tag
 
 gems:
   - jekyll-paginate-v2
+
+postcss:
+  cache: false
+
+exclude:
+  - package.json
+  - postcss.config.js
+  - tailwind.config.js
+  - package-lock.json

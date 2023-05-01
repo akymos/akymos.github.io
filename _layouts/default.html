@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html class="direction--ltr theme--dark" lang="{{ page.lang | default: site.lang | default: " en" }}">
+<html class="dark" lang="{{ page.lang | default: site.lang | default: " en" }}">
 {%- include head.html -%}
-<body>
+<body class="flex flex-col min-h-screen">
     {%- include header.html -%}
-    <main class="page-content" aria-label="Content">
-        <div class="wrapper">
+    <main class="pb-4">
+        <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
             {{ content }}
         </div>
     </main>
-    {%- include footer.html -%}
+    {% include pagination.html %}
     <script>
         window.FontAwesomeConfig = {
             searchPseudoElements: true
