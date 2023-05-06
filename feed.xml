@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://akymos.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akymos.io/" rel="alternate" type="text/html" /><updated>2023-05-01T16:00:44+00:00</updated><id>https://akymos.io/feed.xml</id><title type="html">Akymos.io</title><entry><title type="html">TryHackMe - OhSINT</title><link href="https://akymos.io/ctf/2023/04/30/ohsint.html" rel="alternate" type="text/html" title="TryHackMe - OhSINT" /><published>2023-04-30T12:45:00+00:00</published><updated>2023-04-30T12:45:00+00:00</updated><id>https://akymos.io/ctf/2023/04/30/ohsint</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/30/ohsint.html"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://akymos.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akymos.io/" rel="alternate" type="text/html" /><updated>2023-05-06T10:14:30+00:00</updated><id>https://akymos.io/feed.xml</id><title type="html">Akymos.io</title><entry><title type="html">TryHackMe - OhSINT</title><link href="https://akymos.io/ctf/2023/04/30/ohsint.html" rel="alternate" type="text/html" title="TryHackMe - OhSINT" /><published>2023-04-30T12:45:00+00:00</published><updated>2023-04-30T12:45:00+00:00</updated><id>https://akymos.io/ctf/2023/04/30/ohsint</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/30/ohsint.html"><![CDATA[<hr />
 
-<h3>Table of Contents</h3>
+<h2>Table of Contents</h2>
 <nav class="toc">
 <ul id="markdown-toc">
   <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
@@ -117,7 +117,7 @@ And I found a part of text that I didn’t see in the blog post.</p>
 
 <p>So the answer is: <code class="language-plaintext highlighter-rouge">pennYDr0pper.!</code></p>]]></content><author><name>Akymos</name></author><category term="ctf" /><category term="ctf" /><category term="tryhackme" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry><entry><title type="html">TryHackMe - LazyAdmin</title><link href="https://akymos.io/ctf/2023/04/23/lazyadmin.html" rel="alternate" type="text/html" title="TryHackMe - LazyAdmin" /><published>2023-04-23T17:24:00+00:00</published><updated>2023-04-23T17:24:00+00:00</updated><id>https://akymos.io/ctf/2023/04/23/lazyadmin</id><content type="html" xml:base="https://akymos.io/ctf/2023/04/23/lazyadmin.html"><![CDATA[<hr />
 
-<h3>Table of Contents</h3>
+<h2>Table of Contents</h2>
 <nav class="toc">
 <ul id="markdown-toc">
   <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
@@ -291,7 +291,7 @@ THM<span class="o">{</span><span class="k">***************************</span><sp
 </code></pre></div></div>
 <p>The root flag is: <code class="language-plaintext highlighter-rouge">THM{***************************}</code></p>]]></content><author><name>Akymos</name></author><category term="ctf" /><category term="ctf" /><category term="tryhackme" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry><entry><title type="html">Project ff</title><link href="https://akymos.io/project/2022/12/04/ff.html" rel="alternate" type="text/html" title="Project ff" /><published>2022-12-04T00:00:00+00:00</published><updated>2022-12-04T00:00:00+00:00</updated><id>https://akymos.io/project/2022/12/04/ff</id><content type="html" xml:base="https://akymos.io/project/2022/12/04/ff.html"><![CDATA[<hr />
 
-<h3>Table of Contents</h3>
+<h2>Table of Contents</h2>
 <nav class="toc">
 <ul id="markdown-toc">
   <li><a href="#features" id="markdown-toc-features">Features</a></li>
@@ -368,7 +368,7 @@ Use <span class="s2">"ff [command] --help"</span> <span class="k">for </span>mor
 <h2 id="full-code">Full code</h2>
 <p><a href="https://github.com/akymos/ff">GitHub</a></p>]]></content><author><name>Akymos</name></author><category term="project" /><category term="project" /><category term="ff" /><summary type="html"><![CDATA[Table of Contents]]></summary></entry><entry><title type="html">TryHackMe - Basic Pentesting</title><link href="https://akymos.io/ctf/2022/11/26/basic-pentesting.html" rel="alternate" type="text/html" title="TryHackMe - Basic Pentesting" /><published>2022-11-26T00:00:00+00:00</published><updated>2022-11-26T00:00:00+00:00</updated><id>https://akymos.io/ctf/2022/11/26/basic-pentesting</id><content type="html" xml:base="https://akymos.io/ctf/2022/11/26/basic-pentesting.html"><![CDATA[<hr />
 
-<h3>Table of Contents</h3>
+<h2>Table of Contents</h2>
 <nav class="toc">
 <ul id="markdown-toc">
   <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
