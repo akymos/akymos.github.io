@@ -4,10 +4,12 @@ layout: default
 <header class="mb-4 lg:mb-6 not-format">
     <address class="flex items-center mb-6 not-italic">
         <div class="inline-flex items-center mr-3 text-sm text-white">
-            <img class="mr-4 w-16 h-16 rounded-full" src="https://github.com/akymos.png" alt="{{ page.author }}">
+            <a href="{{ "/about.html" }}">
+                <img class="mr-4 w-16 h-16 rounded-full" src="https://github.com/akymos.png" alt="{{ page.author }}">
+            </a>
             <div>
                 <p class="text-base font-light text-gray-400">
-                    <time pubdate="{{ page.date }}" datetime="{{ page.date }}" title="{{ page.date | date_to_string }}">Published on {{ page.date | timeago }}</time> by {{ page.author }}
+                    <time pubdate="{{ page.date }}" datetime="{{ page.date }}" title="{{ page.date | date_to_string }}">Published on {{ page.date | timeago }}</time> by <a href="{{ "/about.html" }}" class="text-base font-light text-gray-400">{{ page.author }}</a>
                 </p>
                 <p class="text-base font-light text-gray-400">
                     {{ content | reading_time }} min read

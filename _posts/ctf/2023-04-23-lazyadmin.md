@@ -6,6 +6,7 @@ category: ctf
 author: Akymos
 tags: [ctf, tryhackme]
 anchor: true
+description: Easy linux machine to practice your skills
 ---
 
 <hr>
@@ -22,7 +23,7 @@ anchor: true
 - **Link**: [https://tryhackme.com/room/lazyadmin](https://tryhackme.com/room/lazyadmin){:target="_blank"}
 - **Subscription**: Free
 - **Difficulty**: Easy
-- **Description**: Easy linux machine to practice your skills
+- **Description**: {{ page.description }}
 
 ### Questions
 1. What is the user flag?

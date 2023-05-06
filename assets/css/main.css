@@ -118,6 +118,13 @@ address p {
   margin-bottom: 0px !important;
 }
 
+.about-name {
+  margin-top: 0px !important;
+}
+
+.thm_line {
+  height: 16px;
+}
 /* Magnific Popup CSS */
 .mfp-bg {
   top: 0;

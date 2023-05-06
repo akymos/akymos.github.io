@@ -7,12 +7,13 @@ TITLE_SLUG="$(printf -- "$POST_TITLE" | sed -E 's/[^a-zA-Z0-9]+/-/g' | tr "[:upp
 CATEGORY_SLUG="$(printf -- "$POST_CATEGORY" | sed -E 's/[^a-zA-Z0-9]+/-/g' | tr "[:upper:]" "[:lower:]")"
 
 POST_DATE="$(date +%Y-%m-%d)"
+POST_TIME="$(date +%H:%M)"
 
 POST_LAYOUT=$(cat <<EOF
 ---
 layout: post
 title: $POST_TITLE
-date: $POST_DATE 00:00
+date: $POST_DATE $POST_TIME
 category: $CATEGORY_SLUG
 author: Akymos
 tags: [$CATEGORY_SLUG]
