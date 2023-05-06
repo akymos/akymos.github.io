@@ -5,7 +5,9 @@
     {%- include header.html -%}
     <main class="pb-4">
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-            {{ content }}
+            <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-invert prose prose-invert lg:prose-xl">
+                {{ content }}
+            </article>
         </div>
     </main>
     {% include pagination.html %}
