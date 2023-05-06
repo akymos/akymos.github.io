@@ -33,15 +33,19 @@ autopages:
   collections:
     enabled: false
 
+jekyll_timeago:
+  depth: 1
+
 # Build settings
 plugins:
   - jekyll-feed
   - liquid-md5
   - jekyll-postcss
   - jekyll-seo-tag
-
-gems:
   - jekyll-paginate-v2
+  - jekyll-timeago
+  - liquid_reading_time
+  - jekyll-sitemap
 
 postcss:
   cache: false
@@ -51,3 +55,4 @@ exclude:
   - postcss.config.js
   - tailwind.config.js
   - package-lock.json
+  - bin
