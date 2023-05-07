@@ -7,6 +7,7 @@ author: Akymos
 tags: [ctf, tryhackme]
 anchor: true
 description: Easy linux machine to practice your skills
+thumb: "/assets/images/ctf-lazyadmin/00.jpg"
 ---
 
 <hr>

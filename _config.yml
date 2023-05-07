@@ -21,15 +21,16 @@ autopages:
   enabled: true
   tags: 
     layouts: 
-      - autopage_tags.html
+      - posts.html
     enabled: true
     permalink: '/tag/:tag'
+    title: 'Posts Tagged ":tag"'
   categories:
     layouts:
-      - autopage_cats.html
+      - posts.html
     enabled: true
     permalink: '/:cat'
-    title: 'Posts about :cat'
+    title: 'Posts About ":cat"'
   collections:
     enabled: false
 

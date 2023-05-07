@@ -110,7 +110,7 @@ hr {
 }
 
 .excerpt {
-  @apply my-2 text-sm;
+  @apply mb-2 text-sm mt-0 !important;
 }
 
 address p {
@@ -125,6 +125,11 @@ address p {
 .thm_line {
   height: 16px;
 }
+
+h2.post-title {
+  @apply mt-8 mb-1 !important;
+}
+
 /* Magnific Popup CSS */
 .mfp-bg {
   top: 0;
